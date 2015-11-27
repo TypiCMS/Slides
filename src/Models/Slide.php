@@ -17,6 +17,7 @@ class Slide extends Base
 
     protected $fillable = [
         'image',
+        'page_id',
         // Translatable columns
         'title',
         'slug',
@@ -47,4 +48,12 @@ class Slide extends Base
     public $attachments = [
         'image',
     ];
+
+    /**
+     * Get the page record associated with the slide.
+     */
+    public function page()
+    {
+        return $this->belongsTo('TypiCMS\Modules\Pages\Models\Page');
+    }
 }
