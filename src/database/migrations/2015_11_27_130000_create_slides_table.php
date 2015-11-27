@@ -27,10 +27,6 @@ class CreateSlidesTable extends Migration
             $table->integer('slide_id')->unsigned();
             $table->string('locale');
             $table->boolean('status')->default(0);
-            $table->string('title');
-            $table->string('slug')->nullable();
-            $table->string('website')->nullable();
-            $table->text('summary');
             $table->text('body');
             $table->timestamps();
             $table->unique(['slide_id', 'locale']);
