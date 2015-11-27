@@ -1,5 +1,8 @@
-<ul class="list-slides">
+<div class="list-slides swiper-wrapper">
     @foreach ($items as $slide)
     @include('slides::public._list-item')
     @endforeach
-</ul>
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
