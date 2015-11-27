@@ -13,9 +13,6 @@
 
 <div class="tab-content">
 
-<input type="hidden" name="homepage" value="0">
-{!! BootForm::checkbox(trans('validation.attributes.homepage'), 'homepage') !!}
-
 <div class="row">
     <div class="col-sm-2 form-group @if($errors->has('position'))has-error @endif">
         {!! BootForm::text(trans('validation.attributes.position'), 'position') !!}
