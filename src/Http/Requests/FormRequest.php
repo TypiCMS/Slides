@@ -13,7 +13,8 @@ class FormRequest extends AbstractFormRequest
             'image'    => 'image|max:2000',
         ];
         foreach (config('translatable.locales') as $locale) {
-            $rules[$locale.'.website'] = 'url';
+            $rules[$locale.'.title'] = 'max:255';
+            $rules[$locale.'.slug'] = 'max:255';
         }
 
         return $rules;
