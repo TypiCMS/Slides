@@ -19,15 +19,11 @@
                     <th st-sort="position" st-sort-default="true" class="position st-sort">Position</th>
                     <th st-sort="homepage" class="homepage st-sort">Home</th>
                     <th st-sort="title" class="title st-sort">Title</th>
-                    <th st-sort="website" class="website st-sort">Website</th>
                 </tr>
                 <tr>
                     <td colspan="6"></td>
                     <td>
                         <input st-search="title" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
-                    </td>
-                    <td>
-                        <input st-search="website" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
                     </td>
                 </tr>
             </thead>
@@ -47,12 +43,11 @@
                     </td>
                     <td>@{{ model.homepage }}</td>
                     <td>@{{ model.title }}</td>
-                    <td>@{{ model.website }}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="8" typi-pagination></td>
+                    <td colspan="7" typi-pagination></td>
                 </tr>
             </tfoot>
         </table>
