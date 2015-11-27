@@ -43,19 +43,6 @@ class RouteServiceProvider extends ServiceProvider
         $router->group(['namespace' => $this->namespace], function (Router $router) {
 
             /*
-             * Front office routes
-             */
-            if ($page = TypiCMS::getPageLinkedToModule('slides')) {
-                $options = $page->private ? ['middleware' => 'auth'] : [];
-                foreach (config('translatable.locales') as $lang) {
-                    if ($uri = $page->uri($lang)) {
-                        $router->get($uri, $options + ['as' => $lang.'.slides', 'uses' => 'PublicController@index']);
-                        $router->get($uri.'/{slug}', $options + ['as' => $lang.'.slides.slug', 'uses' => 'PublicController@show']);
-                    }
-                }
-            }
-
-            /*
              * Admin routes
              */
             $router->resource('admin/slides', 'AdminController');
