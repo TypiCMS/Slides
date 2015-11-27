@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name'     => 'Partenaires',
-    'slides' => 'partenaire|partenaires',
-    'New'      => 'Nouveau partenaire',
-    'Edit'     => 'Modifier le partenaire',
-    'Back'     => 'Retour à la liste des partenaires',
+    'name'     => 'Slides',
+    'slides'   => 'slide|slides',
+    'New'      => 'Nouveau slide',
+    'Edit'     => 'Modifier le slide',
+    'Back'     => 'Retour à la liste des slides',
 ];
