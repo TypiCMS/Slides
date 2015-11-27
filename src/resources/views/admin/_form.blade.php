@@ -19,6 +19,8 @@
     </div>
 </div>
 
+{!! BootForm::select(trans('validation.attributes.page_id'), 'page_id', Pages::getPagesForSelect()) !!}
+
 @foreach ($locales as $lang)
 
     <div class="tab-pane fade @if($locale == $lang)in active @endif" id="content-{{ $lang }}">
