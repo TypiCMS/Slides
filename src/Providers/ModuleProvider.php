@@ -7,7 +7,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\FileObserver;
-use TypiCMS\Modules\Core\Observers\SlugObserver;
 use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 use TypiCMS\Modules\Slides\Models\Slide;
 use TypiCMS\Modules\Slides\Models\SlideTranslation;
@@ -41,7 +40,6 @@ class ModuleProvider extends ServiceProvider
         );
 
         // Observers
-        SlideTranslation::observe(new SlugObserver());
         Slide::observe(new FileObserver());
     }
 

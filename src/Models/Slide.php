@@ -18,10 +18,8 @@ class Slide extends Base
     protected $fillable = [
         'image',
         'page_id',
-        // Translatable columns
-        'title',
-        'slug',
         'position',
+        // Translatable columns
         'status',
         'body',
     ];
@@ -32,13 +30,11 @@ class Slide extends Base
      * @var array
      */
     public $translatedAttributes = [
-        'title',
-        'slug',
         'status',
         'body',
     ];
 
-    protected $appends = ['status', 'title', 'thumb'];
+    protected $appends = ['status', 'thumb'];
 
     /**
      * Columns that are file.
