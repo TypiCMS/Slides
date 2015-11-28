@@ -46,6 +46,17 @@ class Slide extends Base
     ];
 
     /**
+     * Get title attribute from translation table
+     * and append it to main model attributes.
+     *
+     * @return string title
+     */
+    public function getTitleAttribute($value)
+    {
+        return 'Slide '.$this->id;
+    }
+
+    /**
      * Get the page record associated with the slide.
      */
     public function page()
