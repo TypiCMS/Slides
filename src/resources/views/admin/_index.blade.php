@@ -17,14 +17,7 @@
                     <th st-sort="status" class="status st-sort">Status</th>
                     <th st-sort="image" class="image st-sort">Image</th>
                     <th st-sort="position" st-sort-default="true" class="position st-sort">Position</th>
-                    <th st-sort="homepage" class="homepage st-sort">Home</th>
-                    <th st-sort="title" class="title st-sort">Title</th>
-                </tr>
-                <tr>
-                    <td colspan="6"></td>
-                    <td>
-                        <input st-search="title" class="form-control input-sm" placeholder="@lang('global.Search')…" type="text">
-                    </td>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -41,13 +34,12 @@
                     <td>
                         <input class="form-control input-sm" min="0" type="number" value="@{{ model.position }}" name="position" ng-model="model.position" ng-change="update(model)">
                     </td>
-                    <td>@{{ model.homepage }}</td>
-                    <td>@{{ model.title }}</td>
+                    <td></td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="7" typi-pagination></td>
+                    <td colspan="6" typi-pagination></td>
                 </tr>
             </tfoot>
         </table>
