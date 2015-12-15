@@ -19,6 +19,7 @@ class Slide extends Base
         'image',
         'page_id',
         'position',
+        'url',
         // Translatable columns
         'status',
         'body',
@@ -34,7 +35,7 @@ class Slide extends Base
         'body',
     ];
 
-    protected $appends = ['status', 'thumb'];
+    protected $appends = ['status', 'thumb', 'body_cleaned'];
 
     /**
      * Columns that are file.
@@ -62,5 +63,16 @@ class Slide extends Base
     public function page()
     {
         return $this->belongsTo('TypiCMS\Modules\Pages\Models\Page');
+    }
+
+    /**
+     * Get Body attribute from translation table
+     * and append it to main model attributes.
+     *
+     * @return string
+     */
+    public function getBodyCleanedAttribute()
+    {
+        return strip_tags(html_entity_decode($this->body));
     }
 }

@@ -17,7 +17,7 @@
                     <th st-sort="status" class="status st-sort">Status</th>
                     <th st-sort="image" class="image st-sort">Image</th>
                     <th st-sort="position" st-sort-default="true" class="position st-sort">Position</th>
-                    <th></th>
+                    <th>Body</th>
                 </tr>
             </thead>
 
@@ -34,7 +34,7 @@
                     <td>
                         <input class="form-control input-sm" min="0" type="number" value="@{{ model.position }}" name="position" ng-model="model.position" ng-change="update(model)">
                     </td>
-                    <td></td>
+                    <td>@{{ model.body_cleaned }}</td>
                 </tr>
             </tbody>
             <tfoot>

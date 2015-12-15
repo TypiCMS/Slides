@@ -19,6 +19,12 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-sm-6">
+        {!! BootForm::text(trans('validation.attributes.url'), 'url') !!}
+    </div>
+</div>
+
 {!! BootForm::select(trans('validation.attributes.page_id'), 'page_id', Pages::getPagesForSelect()) !!}
 
 @foreach ($locales as $lang)

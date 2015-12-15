@@ -8,6 +8,9 @@ class ModulePresenter extends Presenter
 {
     public function url()
     {
+        if ($this->entity->url) {
+            return $this->entity->url;
+        }
         if ($this->entity->page) {
             return $this->entity->page->uri(config('app.locale'));
         }
