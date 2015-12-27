@@ -25,7 +25,7 @@
     </div>
 </div>
 
-{!! BootForm::select(trans('validation.attributes.page_id'), 'page_id', Pages::getPagesForSelect()) !!}
+{!! BootForm::select(trans('validation.attributes.page_id'), 'page_id', Pages::allForSelect()) !!}
 
 @foreach ($locales as $lang)
 
