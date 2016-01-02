@@ -68,18 +68,4 @@ class AdminController extends BaseAdminController
 
         return $this->redirect($request, $slide);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \TypiCMS\Modules\Slides\Models\Slide $slide
-     *
-     * @return \Illuminate\Http\RedirectResponse|null
-     */
-    public function destroy(Slide $slide)
-    {
-        if ($this->repository->delete($slide)) {
-            return back();
-        }
-    }
 }
