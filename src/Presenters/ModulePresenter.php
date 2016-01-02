@@ -19,6 +19,9 @@ class ModulePresenter extends Presenter
 
     public function title()
     {
+        if ($this->entity->url) {
+            return $this->entity->url;
+        }
         if ($this->entity->page) {
             return $this->entity->page->title;
         }
