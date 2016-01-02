@@ -18,20 +18,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'TypiCMS\Modules\Slides\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
-     */
-    public function boot(Router $router)
-    {
-        parent::boot($router);
-
-        $router->model('slides', 'TypiCMS\Modules\Slides\Models\Slide');
-    }
-
-    /**
      * Define the routes for the application.
      *
      * @param \Illuminate\Routing\Router $router
@@ -45,12 +31,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->resource('admin/slides', 'AdminController');
+            $router->get('admin/slides', ['as' => 'admin.slides.index', 'uses' => 'AdminController@index']);
+            $router->get('admin/slides/create', ['as' => 'admin.slides.create', 'uses' => 'AdminController@create']);
+            $router->get('admin/slides/{slide}/edit', ['as' => 'admin.slides.edit', 'uses' => 'AdminController@edit']);
+            $router->post('admin/slides', ['as' => 'admin.slides.store', 'uses' => 'AdminController@store']);
+            $router->put('admin/slides/{slide}', ['as' => 'admin.slides.update', 'uses' => 'AdminController@update']);
 
             /*
              * API routes
              */
-            $router->resource('api/slides', 'ApiController');
+            $router->get('api/slides', ['as' => 'api.slides.index', 'uses' => 'ApiController@index']);
+            $router->put('api/slides/{slide}', ['as' => 'api.slides.update', 'uses' => 'ApiController@update']);
+            $router->delete('api/slides/{slide}', ['as' => 'api.slides.destroy', 'uses' => 'ApiController@destroy']);
         });
     }
 }
