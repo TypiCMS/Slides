@@ -34,7 +34,7 @@
                         <img ng-src="@{{ model.thumb }}" alt="">
                     </td>
                     <td>
-                        <input class="form-control input-sm" min="0" type="number" value="@{{ model.position }}" name="position" ng-model="model.position" ng-change="update(model)">
+                        <input class="form-control input-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model)">
                     </td>
                     <td>@{{ model.body_cleaned }}</td>
                 </tr>
