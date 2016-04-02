@@ -5,9 +5,8 @@ namespace TypiCMS\Modules\Slides\Composers;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
-use TypiCMS\Modules\Core\Composers\BaseSidebarViewComposer;
 
-class SidebarViewComposer extends BaseSidebarViewComposer
+class SidebarViewComposer
 {
     public function compose(View $view)
     {
@@ -15,10 +14,10 @@ class SidebarViewComposer extends BaseSidebarViewComposer
             $group->addItem(trans('slides::global.name'), function (SidebarItem $item) {
                 $item->icon = config('typicms.slides.sidebar.icon', 'icon fa fa-fw fa-picture-o');
                 $item->weight = config('typicms.slides.sidebar.weight');
-                $item->route('admin.slides.index');
-                $item->append('admin.slides.create');
+                $item->route('admin::index-slides');
+                $item->append('admin::create-slides');
                 $item->authorize(
-                    $this->auth->hasAccess('slides.index')
+                    auth()->user()->can('index-slides')
                 );
             });
         });

@@ -31,18 +31,18 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/slides', ['as' => 'admin.slides.index', 'uses' => 'AdminController@index']);
-            $router->get('admin/slides/create', ['as' => 'admin.slides.create', 'uses' => 'AdminController@create']);
-            $router->get('admin/slides/{slide}/edit', ['as' => 'admin.slides.edit', 'uses' => 'AdminController@edit']);
-            $router->post('admin/slides', ['as' => 'admin.slides.store', 'uses' => 'AdminController@store']);
-            $router->put('admin/slides/{slide}', ['as' => 'admin.slides.update', 'uses' => 'AdminController@update']);
+            $router->get('admin/slides', 'AdminController@index')->name('admin::index-slides');
+            $router->get('admin/slides/create', 'AdminController@create')->name('admin::create-slides');
+            $router->get('admin/slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slides');
+            $router->post('admin/slides', 'AdminController@store')->name('admin::store-slides');
+            $router->put('admin/slides/{slide}', 'AdminController@update')->name('admin::update-slides');
 
             /*
              * API routes
              */
-            $router->get('api/slides', ['as' => 'api.slides.index', 'uses' => 'ApiController@index']);
-            $router->put('api/slides/{slide}', ['as' => 'api.slides.update', 'uses' => 'ApiController@update']);
-            $router->delete('api/slides/{slide}', ['as' => 'api.slides.destroy', 'uses' => 'ApiController@destroy']);
+            $router->get('api/slides', 'ApiController@index')->name('api::index-slides');
+            $router->put('api/slides/{slide}', 'ApiController@update')->name('api::update-slides');
+            $router->delete('api/slides/{slide}', 'ApiController@destroy')->name('api::destroy-slides');
         });
     }
 }
