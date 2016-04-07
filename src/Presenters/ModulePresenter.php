@@ -19,6 +19,11 @@ class ModulePresenter extends Presenter
 
     public function title()
     {
+        return 'Slide '.$this->id;
+    }
+
+    public function title_attribute()
+    {
         if ($this->entity->url) {
             return $this->entity->url;
         }
