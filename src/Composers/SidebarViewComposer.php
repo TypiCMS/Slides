@@ -3,6 +3,7 @@
 namespace TypiCMS\Modules\Slides\Composers;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Sidebar\SidebarGroup;
 use Maatwebsite\Sidebar\SidebarItem;
 
@@ -17,7 +18,7 @@ class SidebarViewComposer
                 $item->route('admin::index-slides');
                 $item->append('admin::create-slides');
                 $item->authorize(
-                    auth()->user()->can('index-slides')
+                    Gate::allows('index-slides')
                 );
             });
         });
