@@ -16,7 +16,7 @@ class SidebarViewComposer
                 $item->icon = config('typicms.slides.sidebar.icon', 'icon fa fa-fw fa-picture-o');
                 $item->weight = config('typicms.slides.sidebar.weight');
                 $item->route('admin::index-slides');
-                $item->append('admin::create-slides');
+                $item->append('admin::create-slide');
                 $item->authorize(
                     Gate::allows('index-slides')
                 );
