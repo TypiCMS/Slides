@@ -2,46 +2,28 @@
 
 namespace TypiCMS\Modules\Slides\Models;
 
-use Dimsav\Translatable\Translatable;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
 
 class Slide extends Base
 {
+    use HasTranslations;
     use Historable;
     use PresentableTrait;
-    use Translatable;
 
     protected $presenter = 'TypiCMS\Modules\Slides\Presenters\ModulePresenter';
 
-    protected $fillable = [
-        'image',
-        'page_id',
-        'position',
-        'url',
-        // Translatable columns
+    protected $guarded = ['id'];
+
+    public $translatable = [
         'status',
         'body',
     ];
 
-    /**
-     * Translatable model configs.
-     *
-     * @var array
-     */
-    public $translatedAttributes = [
-        'status',
-        'body',
-    ];
+    protected $appends = ['thumb', 'body_cleaned'];
 
-    protected $appends = ['status', 'thumb', 'body_cleaned'];
-
-    /**
-     * Columns that are file.
-     *
-     * @var array
-     */
     public $attachments = [
         'image',
     ];
@@ -52,16 +34,6 @@ class Slide extends Base
     public function page()
     {
         return $this->belongsTo('TypiCMS\Modules\Pages\Models\Page');
-    }
-
-    /**
-     * Append status attribute from translation table.
-     *
-     * @return string
-     */
-    public function getStatusAttribute()
-    {
-        return $this->status;
     }
 
     /**
