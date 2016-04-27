@@ -8,9 +8,7 @@
 
     @include('core::admin._button-create', ['module' => 'slides'])
 
-    <h1>
-        <span>@{{ models.length }} @choice('slides::global.slides', 2)</span>
-    </h1>
+    <h1>@lang('slides::global.name')</h1>
 
     <div class="btn-toolbar">
         @include('core::admin._lang-switcher')
