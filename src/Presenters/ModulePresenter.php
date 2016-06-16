@@ -19,7 +19,7 @@ class ModulePresenter extends Presenter
 
     public function title()
     {
-        return trans('slides::global.edit');
+        return trans('slides::global.Edit');
     }
 
     public function title_attribute()
