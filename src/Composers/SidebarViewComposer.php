@@ -13,6 +13,7 @@ class SidebarViewComposer
     {
         $view->sidebar->group(trans('global.menus.content'), function (SidebarGroup $group) {
             $group->addItem(trans('slides::global.name'), function (SidebarItem $item) {
+                $item->id = 'slides';
                 $item->icon = config('typicms.slides.sidebar.icon', 'icon fa fa-fw fa-picture-o');
                 $item->weight = config('typicms.slides.sidebar.weight');
                 $item->route('admin::index-slides');
