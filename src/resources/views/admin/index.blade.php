@@ -30,7 +30,7 @@
 
             <tbody>
                 <tr ng-repeat="model in displayedModels">
-                    <td typi-btn-delete action="delete(model)"></td>
+                    <td typi-btn-delete action="delete(model, 'slide ' + model.id)"></td>
                     <td>
                         @include('core::admin._button-edit', ['module' => 'slides'])
                     </td>
