@@ -16,7 +16,7 @@ class CreateSlidesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('position')->unsigned()->default(1);
-            $table->integer('page_id')->unsigned();
+            $table->integer('page_id')->unsigned()->nullable();
             $table->string('image')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
