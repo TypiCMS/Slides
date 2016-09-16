@@ -2,6 +2,7 @@
 
 namespace TypiCMS\Modules\Slides\Repositories;
 
+use TypiCMS\Modules\Core\EloquentRepository;
 use TypiCMS\Modules\Slides\Models\Slide;
 
 class EloquentSlide extends EloquentRepository
