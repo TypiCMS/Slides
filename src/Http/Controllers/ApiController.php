@@ -5,7 +5,7 @@ namespace TypiCMS\Modules\Slides\Http\Controllers;
 use Illuminate\Support\Facades\Request;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Repositories\SlideInterface as Repository;
+use TypiCMS\Modules\Slides\Repositories\EloquentSlide as Repository;
 
 class ApiController extends BaseApiController
 {

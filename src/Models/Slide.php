@@ -15,7 +15,7 @@ class Slide extends Base
 
     protected $presenter = 'TypiCMS\Modules\Slides\Presenters\ModulePresenter';
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'exit'];
 
     public $translatable = [
         'status',

@@ -5,11 +5,11 @@ namespace TypiCMS\Modules\Slides\Http\Controllers;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Slides\Http\Requests\FormRequest;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Repositories\SlideInterface;
+use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(SlideInterface $slide)
+    public function __construct(EloquentSlide $slide)
     {
         parent::__construct($slide);
     }

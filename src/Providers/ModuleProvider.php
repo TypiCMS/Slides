@@ -7,10 +7,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\FileObserver;
-use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 use TypiCMS\Modules\Slides\Models\Slide;
 use TypiCMS\Modules\Slides\Models\SlideTranslation;
-use TypiCMS\Modules\Slides\Repositories\CacheDecorator;
 use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class ModuleProvider extends ServiceProvider
@@ -64,14 +62,6 @@ class ModuleProvider extends ServiceProvider
             $view->page = TypiCMS::getPageLinkedToModule('slides');
         });
 
-        $app->bind('TypiCMS\Modules\Slides\Repositories\SlideInterface', function (Application $app) {
-            $repository = new EloquentSlide(new Slide());
-            if (!config('typicms.cache')) {
-                return $repository;
-            }
-            $laravelCache = new LaravelCache($app['cache'], 'slides', 10);
-
-            return new CacheDecorator($repository, $laravelCache);
-        });
+        $app->bind('Slides', EloquentSlide::class);
     }
 }
