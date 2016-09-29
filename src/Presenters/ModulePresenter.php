@@ -14,7 +14,6 @@ class ModulePresenter extends Presenter
         if ($this->entity->page) {
             return $this->entity->page->uri(config('app.locale'));
         }
-        return null;
     }
 
     public function title()
@@ -30,6 +29,5 @@ class ModulePresenter extends Presenter
         if ($this->entity->page) {
             return $this->entity->page->title;
         }
-        return null;
     }
 }

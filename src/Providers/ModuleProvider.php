@@ -9,7 +9,6 @@ use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\FileObserver;
 use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Models\SlideTranslation;
 use TypiCMS\Modules\Slides\Repositories\CacheDecorator;
 use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
