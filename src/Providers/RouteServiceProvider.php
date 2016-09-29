@@ -30,18 +30,22 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->get('admin/slides', 'AdminController@index')->name('admin::index-slides');
-            $router->get('admin/slides/create', 'AdminController@create')->name('admin::create-slide');
-            $router->get('admin/slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide');
-            $router->post('admin/slides', 'AdminController@store')->name('admin::store-slide');
-            $router->put('admin/slides/{slide}', 'AdminController@update')->name('admin::update-slide');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+                $router->get('slides', 'AdminController@index')->name('admin::index-slides');
+                $router->get('slides/create', 'AdminController@create')->name('admin::create-slide');
+                $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide');
+                $router->post('slides', 'AdminController@store')->name('admin::store-slide');
+                $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide');
+            });
 
             /*
              * API routes
              */
-            $router->get('api/slides', 'ApiController@index')->name('api::index-slides');
-            $router->put('api/slides/{slide}', 'ApiController@update')->name('api::update-slide');
-            $router->delete('api/slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide');
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+                $router->get('slides', 'ApiController@index')->name('api::index-slides');
+                $router->put('slides/{slide}', 'ApiController@update')->name('api::update-slide');
+                $router->delete('slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide');
+            });
         });
     }
 }
