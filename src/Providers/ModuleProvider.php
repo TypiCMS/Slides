@@ -3,12 +3,10 @@
 namespace TypiCMS\Modules\Slides\Providers;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\FileObserver;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Models\SlideTranslation;
 use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class ModuleProvider extends ServiceProvider

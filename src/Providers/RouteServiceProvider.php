@@ -30,7 +30,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * Admin routes
              */
-            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function(Router $router) {
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
                 $router->get('slides', 'AdminController@index')->name('admin::index-slides');
                 $router->get('slides/create', 'AdminController@create')->name('admin::create-slide');
                 $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide');
@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
             /*
              * API routes
              */
-            $router->group(['middleware' => 'api', 'prefix' => 'api'], function(Router $router) {
+            $router->group(['middleware' => 'api', 'prefix' => 'api'], function (Router $router) {
                 $router->get('slides', 'ApiController@index')->name('api::index-slides');
                 $router->put('slides/{slide}', 'ApiController@update')->name('api::update-slide');
                 $router->delete('slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide');
