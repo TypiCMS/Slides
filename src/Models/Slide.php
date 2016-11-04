@@ -20,9 +20,6 @@ class Slide extends Base
         'page_id',
         'position',
         'url',
-        // Translatable columns
-        'status',
-        'body',
     ];
 
     /**
@@ -59,9 +56,9 @@ class Slide extends Base
      *
      * @return string
      */
-    public function getStatusAttribute()
+    public function getStatusAttribute($value)
     {
-        return $this->status;
+        return $value;
     }
 
     /**

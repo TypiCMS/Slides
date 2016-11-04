@@ -6,6 +6,11 @@ use TypiCMS\Modules\Core\Models\BaseTranslation;
 
 class SlideTranslation extends BaseTranslation
 {
+    protected $fillable = [
+        'status',
+        'body',
+    ];
+
     /**
      * get the parent model.
      */
