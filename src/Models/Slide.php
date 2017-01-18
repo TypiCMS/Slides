@@ -56,14 +56,4 @@ class Slide extends Base
     {
         return strip_tags(html_entity_decode($this->body));
     }
-
-    /**
-     * Set page_id to null when empty.
-     *
-     * @return string
-     */
-    public function setPageIdAttribute($value)
-    {
-        $this->attributes['page_id'] = ($value == '') ? null : $value;
-    }
 }
