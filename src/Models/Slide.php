@@ -6,6 +6,7 @@ use Laracasts\Presenter\PresentableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
+use TypiCMS\Modules\Pages\Models\Page;
 
 class Slide extends Base
 {
@@ -33,7 +34,7 @@ class Slide extends Base
      */
     public function page()
     {
-        return $this->belongsTo('TypiCMS\Modules\Pages\Models\Page');
+        return $this->belongsTo(Page::class);
     }
 
     /**
