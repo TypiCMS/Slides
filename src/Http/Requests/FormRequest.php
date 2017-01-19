@@ -10,10 +10,10 @@ class FormRequest extends AbstractFormRequest
     {
         $rules = [
             'position' => 'required|integer|min:1',
-            'url'      => 'url|max:255',
-            'image'    => 'image|max:2000',
-            'title.*'  => 'max:255',
-            'slug.*'   => 'max:255',
+            'url' => 'url|max:255',
+            'image' => 'image|max:2000',
+            'title.*' => 'max:255',
+            'slug.*' => 'max:255',
         ];
 
         return $rules;
