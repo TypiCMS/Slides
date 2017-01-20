@@ -1,6 +1,6 @@
 @extends('core::admin.master')
 
-@section('title', trans('slides::global.name'))
+@section('title', __('slides::global.name'))
 
 @section('main')
 
