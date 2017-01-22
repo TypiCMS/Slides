@@ -23,5 +23,5 @@
 {!! BootForm::select(__('Page'), 'page_id', Pages::allForSelect()) !!}
 
 {!! TranslatableBootForm::hidden('status')->value(0) !!}
-{!! TranslatableBootForm::checkbox(__('Online'), 'status') !!}
+{!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
 {!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor') !!}
