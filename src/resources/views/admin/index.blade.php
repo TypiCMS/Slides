@@ -21,10 +21,10 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="status" class="status st-sort">Status</th>
-                    <th st-sort="image" class="image st-sort">Image</th>
-                    <th st-sort="position" st-sort-default="true" class="position st-sort">Position</th>
-                    <th>Body</th>
+                    <th st-sort="status" class="status st-sort">@lang('Status')</th>
+                    <th st-sort="image" class="image st-sort">@lang('Image')</th>
+                    <th st-sort="position" st-sort-default="true" class="position st-sort">@lang('Position')</th>
+                    <th>@lang('Body')</th>
                 </tr>
             </thead>
 
