@@ -6,6 +6,8 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Core\Observers\FileObserver;
+use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
+use TypiCMS\Modules\Slides\Facades\Slides;
 use TypiCMS\Modules\Slides\Models\Slide;
 use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
@@ -30,10 +32,7 @@ class ModuleProvider extends ServiceProvider
             __DIR__.'/../database' => base_path('database'),
         ], 'migrations');
 
-        AliasLoader::getInstance()->alias(
-            'Slides',
-            'TypiCMS\Modules\Slides\Facades\Slides'
-        );
+        AliasLoader::getInstance()->alias('Slides', Slides::class);
 
         // Observers
         Slide::observe(new FileObserver());
@@ -46,12 +45,12 @@ class ModuleProvider extends ServiceProvider
         /*
          * Register route service provider
          */
-        $app->register('TypiCMS\Modules\Slides\Providers\RouteServiceProvider');
+        $app->register(RouteServiceProvider::class);
 
         /*
          * Sidebar view composer
          */
-        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Slides\Composers\SidebarViewComposer');
+        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
