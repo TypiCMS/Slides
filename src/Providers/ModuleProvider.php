@@ -31,6 +31,9 @@ class ModuleProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../database' => base_path('database'),
         ], 'migrations');
+        $this->publishes([
+            __DIR__.'/../resources/assets' => base_path('resources/assets'),
+        ], 'assets');
 
         AliasLoader::getInstance()->alias('Slides', Slides::class);
 
