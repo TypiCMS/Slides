@@ -41,7 +41,7 @@
                     <td>
                         <input class="form-control input-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model)">
                     </td>
-                    <td>@{{ model.body_cleaned | translated }}</td>
+                    <td>@{{ model.body_cleaned_translated }}</td>
                 </tr>
             </tbody>
             <tfoot>

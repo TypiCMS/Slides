@@ -23,7 +23,7 @@ class Slide extends Base
         'body',
     ];
 
-    protected $appends = ['thumb', 'body_cleaned'];
+    protected $appends = ['thumb', 'body_cleaned_translated'];
 
     public $attachments = [
         'image',
@@ -48,12 +48,14 @@ class Slide extends Base
     }
 
     /**
-     * Append body_cleaned attribute from translation table.
+     * Append body_cleaned_translated attribute.
      *
      * @return string
      */
-    public function getBodyCleanedAttribute()
+    public function getBodyCleanedTranslatedAttribute()
     {
-        return json_decode(trim(strip_tags(html_entity_decode($this->attributes['body'])), '"'));
+        $locale = config('app.locale');
+        $body = $this->translate('body', config('typicms.content_locale', $locale));
+        return trim(strip_tags(html_entity_decode($body)), '"');
     }
 }
