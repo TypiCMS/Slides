@@ -7,6 +7,7 @@ use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\History\Traits\Historable;
 use TypiCMS\Modules\Pages\Models\Page;
+use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
 class Slide extends Base
 {
@@ -14,7 +15,7 @@ class Slide extends Base
     use Historable;
     use PresentableTrait;
 
-    protected $presenter = 'TypiCMS\Modules\Slides\Presenters\ModulePresenter';
+    protected $presenter = ModulePresenter::class;
 
     protected $guarded = ['id', 'exit'];
 
