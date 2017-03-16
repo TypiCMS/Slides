@@ -17,7 +17,7 @@ class CreateSlidesTable extends Migration
             $table->increments('id');
             $table->integer('position')->unsigned()->default(1);
             $table->integer('page_id')->unsigned()->nullable();
-            $table->string('image')->nullable();
+            $table->integer('image_id')->unsigned()->nullable();
             $table->string('url')->nullable();
             $table->json('status');
             $table->json('body');

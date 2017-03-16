@@ -5,6 +5,7 @@ namespace TypiCMS\Modules\Slides\Models;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
+use TypiCMS\Modules\Files\Models\File;
 use TypiCMS\Modules\History\Traits\Historable;
 use TypiCMS\Modules\Pages\Models\Page;
 use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
@@ -26,18 +27,6 @@ class Slide extends Base
 
     protected $appends = ['thumb', 'body_cleaned_translated'];
 
-    public $attachments = [
-        'image',
-    ];
-
-    /**
-     * Get the page record associated with the slide.
-     */
-    public function page()
-    {
-        return $this->belongsTo(Page::class);
-    }
-
     /**
      * Append thumb attribute.
      *
@@ -58,5 +47,23 @@ class Slide extends Base
         $locale = config('app.locale');
         $body = $this->translate('body', config('typicms.content_locale', $locale));
         return trim(strip_tags(html_entity_decode($body)), '"');
+    }
+
+    /**
+     * Get the page record associated with the slide.
+     */
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
+
+    /**
+     * This model belongs to one image.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function image()
+    {
+        return $this->belongsTo(File::class, 'image_id');
     }
 }

@@ -5,7 +5,6 @@ namespace TypiCMS\Modules\Slides\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
-use TypiCMS\Modules\Core\Observers\FileObserver;
 use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Slides\Facades\Slides;
 use TypiCMS\Modules\Slides\Models\Slide;
@@ -36,9 +35,6 @@ class ModuleProvider extends ServiceProvider
         ], 'assets');
 
         AliasLoader::getInstance()->alias('Slides', Slides::class);
-
-        // Observers
-        Slide::observe(new FileObserver());
     }
 
     public function register()
