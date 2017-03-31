@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide');
                 $router->post('slides', 'AdminController@store')->name('admin::store-slide');
                 $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide');
-                $router->patch('slides/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-slide');
+                $router->patch('slides/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-slide-ajax');
                 $router->delete('slides/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-slide');
             });
         });
