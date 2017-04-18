@@ -23,7 +23,7 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="status_translated" class="status_translated st-sort">{{ __('Status') }}</th>
+                    <th st-sort="status_translated" class="status st-sort">{{ __('Status') }}</th>
                     <th st-sort="image" class="image st-sort">{{ __('Image') }}</th>
                     <th st-sort="position" st-sort-default="true" class="position st-sort">{{ __('Position') }}</th>
                     <th>{{ __('Body') }}</th>
