@@ -2,9 +2,9 @@
 
 return [
     'slides' => [
-        'index-slides' => 'View list',
+        'see-all-slides' => 'View list',
         'create-slide' => 'Create',
-        'edit-slide' => 'Edit',
-        'destroy-slide' => 'Destroy',
+        'update-slide' => 'Edit',
+        'delete-slide' => 'Delete',
     ],
 ];

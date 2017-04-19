@@ -31,13 +31,13 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
-                $router->get('slides', 'AdminController@index')->name('admin::index-slides');
-                $router->get('slides/create', 'AdminController@create')->name('admin::create-slide');
-                $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide');
-                $router->post('slides', 'AdminController@store')->name('admin::store-slide');
-                $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide');
-                $router->patch('slides/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-slide-ajax');
-                $router->delete('slides/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-slide');
+                $router->get('slides', 'AdminController@index')->name('admin::index-slides')->middleware('can:see-all-slides');
+                $router->get('slides/create', 'AdminController@create')->name('admin::create-slide')->middleware('can:create-slide');
+                $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide')->middleware('can:update-slide');
+                $router->post('slides', 'AdminController@store')->name('admin::store-slide')->middleware('can:create-slide');
+                $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide')->middleware('can:update-slide');
+                $router->patch('slides/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-slide-ajax')->middleware('can:update-slide');
+                $router->delete('slides/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-slide')->middleware('can:delete-slide');
             });
         });
     }
