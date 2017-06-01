@@ -10,7 +10,7 @@
 @include('core::admin._image-fieldset', ['field' => 'image'])
 
 <div class="row">
-    <div class="col-sm-2 form-group @if($errors->has('position'))has-error @endif">
+    <div class="col-sm-2 form-group @if ($errors->has('position'))has-error @endif">
         {!! BootForm::text(__('Position'), 'position')->type('number')->min(1)->required() !!}
     </div>
 </div>

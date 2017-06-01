@@ -1,6 +1,6 @@
 @extends('core::admin.master')
 
-@section('title', __('slides::global.name'))
+@section('title', __('Slides'))
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
     @include('core::admin._button-create', ['module' => 'slides'])
 
-    <h1>@lang('slides::global.name')</h1>
+    <h1>@lang('Slides')</h1>
 
     <div class="btn-toolbar">
         @include('core::admin._button-select')

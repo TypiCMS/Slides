@@ -17,7 +17,7 @@ class SidebarViewComposer
         $view->sidebar->group(__('Content'), function (SidebarGroup $group) {
             $group->id = 'content';
             $group->weight = 30;
-            $group->addItem(__('slides::global.name'), function (SidebarItem $item) {
+            $group->addItem(__('Slides'), function (SidebarItem $item) {
                 $item->id = 'slides';
                 $item->icon = config('typicms.slides.sidebar.icon', 'icon fa fa-fw fa-picture-o');
                 $item->weight = config('typicms.slides.sidebar.weight');
