@@ -35,6 +35,18 @@ class ModuleProvider extends ServiceProvider
         ], 'assets');
 
         AliasLoader::getInstance()->alias('Slides', Slides::class);
+
+        /*
+         * Sidebar view composer
+         */
+        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
+
+        /*
+         * Add the page in the view.
+         */
+        $this->app->view->composer('slides::public.*', function ($view) {
+            $view->page = TypiCMS::getPageLinkedToModule('slides');
+        });
     }
 
     public function register()
@@ -45,18 +57,6 @@ class ModuleProvider extends ServiceProvider
          * Register route service provider
          */
         $app->register(RouteServiceProvider::class);
-
-        /*
-         * Sidebar view composer
-         */
-        $app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
-
-        /*
-         * Add the page in the view.
-         */
-        $app->view->composer('slides::public.*', function ($view) {
-            $view->page = TypiCMS::getPageLinkedToModule('slides');
-        });
 
         $app->bind('Slides', EloquentSlide::class);
     }
