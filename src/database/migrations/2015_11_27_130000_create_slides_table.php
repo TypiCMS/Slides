@@ -8,7 +8,7 @@ class CreateSlidesTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return null
      */
     public function up()
     {
@@ -17,28 +17,18 @@ class CreateSlidesTable extends Migration
             $table->increments('id');
             $table->integer('position')->unsigned()->default(1);
             $table->integer('page_id')->unsigned()->nullable();
-            $table->string('image')->nullable();
+            $table->integer('image_id')->unsigned()->nullable();
             $table->string('url')->nullable();
+            $table->json('status');
+            $table->json('body');
             $table->timestamps();
-        });
-
-        Schema::create('slide_translations', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->integer('slide_id')->unsigned();
-            $table->string('locale');
-            $table->boolean('status')->default(0);
-            $table->text('body');
-            $table->timestamps();
-            $table->unique(['slide_id', 'locale']);
-            $table->foreign('slide_id')->references('id')->on('slides')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return null
      */
     public function down()
     {

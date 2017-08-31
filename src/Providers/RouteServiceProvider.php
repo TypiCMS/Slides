@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Slides\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 
 class RouteServiceProvider extends ServiceProvider
@@ -20,29 +21,24 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param \Illuminate\Routing\Router $router
-     *
-     * @return void
+     * @return null
      */
-    public function map(Router $router)
+    public function map()
     {
-        $router->group(['namespace' => $this->namespace], function (Router $router) {
+        Route::group(['namespace' => $this->namespace], function (Router $router) {
 
             /*
              * Admin routes
              */
-            $router->get('admin/slides', 'AdminController@index')->name('admin::index-slides');
-            $router->get('admin/slides/create', 'AdminController@create')->name('admin::create-slide');
-            $router->get('admin/slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide');
-            $router->post('admin/slides', 'AdminController@store')->name('admin::store-slide');
-            $router->put('admin/slides/{slide}', 'AdminController@update')->name('admin::update-slide');
-
-            /*
-             * API routes
-             */
-            $router->get('api/slides', 'ApiController@index')->name('api::index-slides');
-            $router->put('api/slides/{slide}', 'ApiController@update')->name('api::update-slide');
-            $router->delete('api/slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide');
+            $router->group(['middleware' => 'admin', 'prefix' => 'admin'], function (Router $router) {
+                $router->get('slides', 'AdminController@index')->name('admin::index-slides')->middleware('can:see-all-slides');
+                $router->get('slides/create', 'AdminController@create')->name('admin::create-slide')->middleware('can:create-slide');
+                $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide')->middleware('can:update-slide');
+                $router->post('slides', 'AdminController@store')->name('admin::store-slide')->middleware('can:create-slide');
+                $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide')->middleware('can:update-slide');
+                $router->patch('slides/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-slide-ajax')->middleware('can:update-slide');
+                $router->delete('slides/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-slide')->middleware('can:delete-slide');
+            });
         });
     }
 }

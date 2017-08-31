@@ -1,12 +1,12 @@
 @extends('core::admin.master')
 
-@section('title', trans('slides::global.New'))
+@section('title', __('New slide'))
 
-@section('main')
+@section('content')
 
     @include('core::admin._button-back', ['module' => 'slides'])
     <h1>
-        @lang('slides::global.New')
+        @lang('New slide')
     </h1>
 
     {!! BootForm::open()->action(route('admin::index-slides'))->multipart()->role('form') !!}

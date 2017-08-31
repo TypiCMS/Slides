@@ -2,64 +2,30 @@
 
 namespace TypiCMS\Modules\Slides\Models;
 
-use Dimsav\Translatable\Translatable;
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
+use TypiCMS\Modules\Files\Models\File;
 use TypiCMS\Modules\History\Traits\Historable;
+use TypiCMS\Modules\Pages\Models\Page;
+use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
 class Slide extends Base
 {
+    use HasTranslations;
     use Historable;
     use PresentableTrait;
-    use Translatable;
 
-    protected $presenter = 'TypiCMS\Modules\Slides\Presenters\ModulePresenter';
+    protected $presenter = ModulePresenter::class;
 
-    protected $fillable = [
-        'image',
-        'page_id',
-        'position',
-        'url',
-    ];
+    protected $guarded = ['id', 'exit'];
 
-    /**
-     * Translatable model configs.
-     *
-     * @var array
-     */
-    public $translatedAttributes = [
+    public $translatable = [
         'status',
         'body',
     ];
 
-    protected $appends = ['status', 'thumb', 'body_cleaned'];
-
-    /**
-     * Columns that are file.
-     *
-     * @var array
-     */
-    public $attachments = [
-        'image',
-    ];
-
-    /**
-     * Get the page record associated with the slide.
-     */
-    public function page()
-    {
-        return $this->belongsTo('TypiCMS\Modules\Pages\Models\Page');
-    }
-
-    /**
-     * Append status attribute from translation table.
-     *
-     * @return string
-     */
-    public function getStatusAttribute($value)
-    {
-        return $value;
-    }
+    protected $appends = ['thumb', 'body_cleaned_translated', 'status_translated'];
 
     /**
      * Append thumb attribute.
@@ -72,22 +38,44 @@ class Slide extends Base
     }
 
     /**
-     * Append body_cleaned attribute from translation table.
+     * Append status_translated attribute.
      *
      * @return string
      */
-    public function getBodyCleanedAttribute()
+    public function getStatusTranslatedAttribute()
     {
-        return strip_tags(html_entity_decode($this->body));
+        $locale = config('app.locale');
+
+        return $this->translate('status', config('typicms.content_locale', $locale));
     }
 
     /**
-     * Set page_id to null when empty.
+     * Append body_cleaned_translated attribute.
      *
      * @return string
      */
-    public function setPageIdAttribute($value)
+    public function getBodyCleanedTranslatedAttribute()
     {
-        $this->attributes['page_id'] = ($value == '') ? null : $value;
+        $locale = config('app.locale');
+        $body = $this->translate('body', config('typicms.content_locale', $locale));
+        return trim(strip_tags(html_entity_decode($body)), '"');
+    }
+
+    /**
+     * Get the page record associated with the slide.
+     */
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
+
+    /**
+     * This model belongs to one image.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function image()
+    {
+        return $this->belongsTo(File::class, 'image_id');
     }
 }

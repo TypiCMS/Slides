@@ -5,11 +5,11 @@ namespace TypiCMS\Modules\Slides\Http\Controllers;
 use TypiCMS\Modules\Core\Http\Controllers\BaseAdminController;
 use TypiCMS\Modules\Slides\Http\Requests\FormRequest;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Repositories\SlideInterface;
+use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class AdminController extends BaseAdminController
 {
-    public function __construct(SlideInterface $slide)
+    public function __construct(EloquentSlide $slide)
     {
         parent::__construct($slide);
     }
@@ -21,7 +21,7 @@ class AdminController extends BaseAdminController
      */
     public function index()
     {
-        $models = $this->repository->all([], true);
+        $models = $this->repository->with('image')->findAll();
         app('JavaScript')->put('models', $models);
 
         return view('slides::admin.index');
@@ -34,7 +34,8 @@ class AdminController extends BaseAdminController
      */
     public function create()
     {
-        $model = $this->repository->getModel();
+        $model = $this->repository->createModel();
+        app('JavaScript')->put('model', $model);
 
         return view('slides::admin.create')
             ->with(compact('model'));
@@ -49,6 +50,8 @@ class AdminController extends BaseAdminController
      */
     public function edit(Slide $slide)
     {
+        app('JavaScript')->put('model', $slide);
+
         return view('slides::admin.edit')
             ->with(['model' => $slide]);
     }
@@ -77,7 +80,7 @@ class AdminController extends BaseAdminController
      */
     public function update(Slide $slide, FormRequest $request)
     {
-        $this->repository->update($request->all());
+        $this->repository->update(request('id'), $request->all());
 
         return $this->redirect($request, $slide);
     }

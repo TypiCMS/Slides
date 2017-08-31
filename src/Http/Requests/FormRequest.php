@@ -10,13 +10,11 @@ class FormRequest extends AbstractFormRequest
     {
         $rules = [
             'position' => 'required|integer|min:1',
-            'url'      => 'url|max:255',
-            'image'    => 'image|max:2000',
+            'url' => 'nullable|url|max:255',
+            'image_id' => 'nullable|integer',
+            'title.*' => 'nullable|max:255',
+            'slug.*' => 'nullable|alpha_dash|max:255',
         ];
-        foreach (config('translatable.locales') as $locale) {
-            $rules[$locale.'.title'] = 'max:255';
-            $rules[$locale.'.slug'] = 'max:255';
-        }
 
         return $rules;
     }

@@ -1,19 +1,19 @@
 @extends('core::admin.master')
 
-@section('title', trans('slides::global.name'))
+@section('title', __('Slides'))
 
-@section('main')
+@section('content')
 
-<div ng-app="typicms" ng-cloak ng-controller="ListController">
+<div ng-cloak ng-controller="ListController">
 
     @include('core::admin._button-create', ['module' => 'slides'])
 
-    <h1>
-        <span>@{{ models.length }} @choice('slides::global.slides', 2)</span>
-    </h1>
+    <h1>@lang('Slides')</h1>
 
     <div class="btn-toolbar">
-        @include('core::admin._lang-switcher')
+        @include('core::admin._button-select')
+        @include('core::admin._button-actions')
+        @include('core::admin._lang-switcher-for-list')
     </div>
 
     <div class="table-responsive">
@@ -23,16 +23,18 @@
                 <tr>
                     <th class="delete"></th>
                     <th class="edit"></th>
-                    <th st-sort="status" class="status st-sort">Status</th>
-                    <th st-sort="image" class="image st-sort">Image</th>
-                    <th st-sort="position" st-sort-default="true" class="position st-sort">Position</th>
-                    <th>Body</th>
+                    <th st-sort="status_translated" class="status st-sort">{{ __('Status') }}</th>
+                    <th st-sort="image" class="image st-sort">{{ __('Image') }}</th>
+                    <th st-sort="position" st-sort-default="true" class="position st-sort">{{ __('Position') }}</th>
+                    <th>{{ __('Body') }}</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr ng-repeat="model in displayedModels">
-                    <td typi-btn-delete action="delete(model, 'slide ' + model.id)"></td>
+                    <td>
+                        <input type="checkbox" checklist-model="checked.models" checklist-value="model">
+                    </td>
                     <td>
                         @include('core::admin._button-edit', ['module' => 'slides'])
                     </td>
@@ -41,9 +43,9 @@
                         <img ng-src="@{{ model.thumb }}" alt="">
                     </td>
                     <td>
-                        <input class="form-control input-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model)">
+                        <input class="form-control input-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model, 'position')">
                     </td>
-                    <td>@{{ model.body_cleaned }}</td>
+                    <td>@{{ model.body_cleaned_translated }}</td>
                 </tr>
             </tbody>
             <tfoot>

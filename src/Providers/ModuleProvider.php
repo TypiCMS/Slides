@@ -3,13 +3,11 @@
 namespace TypiCMS\Modules\Slides\Providers;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
-use TypiCMS\Modules\Core\Observers\FileObserver;
-use TypiCMS\Modules\Core\Services\Cache\LaravelCache;
+use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
+use TypiCMS\Modules\Slides\Facades\Slides;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Repositories\CacheDecorator;
 use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class ModuleProvider extends ServiceProvider
@@ -19,27 +17,36 @@ class ModuleProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/config.php', 'typicms.slides'
         );
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/permissions.php', 'typicms.permissions'
+        );
 
         $modules = $this->app['config']['typicms']['modules'];
         $this->app['config']->set('typicms.modules', array_merge(['slides' => []], $modules));
 
         $this->loadViewsFrom(__DIR__.'/../resources/views/', 'slides');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'slides');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         $this->publishes([
             __DIR__.'/../resources/views' => base_path('resources/views/vendor/slides'),
         ], 'views');
         $this->publishes([
-            __DIR__.'/../database' => base_path('database'),
-        ], 'migrations');
+            __DIR__.'/../resources/assets' => base_path('resources/assets'),
+        ], 'assets');
 
-        AliasLoader::getInstance()->alias(
-            'Slides',
-            'TypiCMS\Modules\Slides\Facades\Facade'
-        );
+        AliasLoader::getInstance()->alias('Slides', Slides::class);
 
-        // Observers
-        Slide::observe(new FileObserver());
+        /*
+         * Sidebar view composer
+         */
+        $this->app->view->composer('core::admin._sidebar', SidebarViewComposer::class);
+
+        /*
+         * Add the page in the view.
+         */
+        $this->app->view->composer('slides::public.*', function ($view) {
+            $view->page = TypiCMS::getPageLinkedToModule('slides');
+        });
     }
 
     public function register()
@@ -49,28 +56,8 @@ class ModuleProvider extends ServiceProvider
         /*
          * Register route service provider
          */
-        $app->register('TypiCMS\Modules\Slides\Providers\RouteServiceProvider');
+        $app->register(RouteServiceProvider::class);
 
-        /*
-         * Sidebar view composer
-         */
-        $app->view->composer('core::admin._sidebar', 'TypiCMS\Modules\Slides\Composers\SidebarViewComposer');
-
-        /*
-         * Add the page in the view.
-         */
-        $app->view->composer('slides::public.*', function ($view) {
-            $view->page = TypiCMS::getPageLinkedToModule('slides');
-        });
-
-        $app->bind('TypiCMS\Modules\Slides\Repositories\SlideInterface', function (Application $app) {
-            $repository = new EloquentSlide(new Slide());
-            if (!config('typicms.cache')) {
-                return $repository;
-            }
-            $laravelCache = new LaravelCache($app['cache'], 'slides', 10);
-
-            return new CacheDecorator($repository, $laravelCache);
-        });
+        $app->bind('Slides', EloquentSlide::class);
     }
 }
