@@ -18,7 +18,7 @@
 
     <div class="table-responsive">
 
-        <table st-persist="slidesTable" st-table="displayedModels" st-safe-src="models" st-order st-filter class="table table-condensed table-main">
+        <table st-persist="slidesTable" st-table="displayedModels" st-safe-src="models" st-order st-filter class="table table-main">
             <thead>
                 <tr>
                     <th class="delete"></th>
@@ -43,7 +43,7 @@
                         <img ng-src="@{{ model.thumb }}" alt="">
                     </td>
                     <td>
-                        <input class="form-control input-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model, 'position')">
+                        <input class="form-control form-control-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model, 'position')">
                     </td>
                     <td>@{{ model.body_cleaned_translated }}</td>
                 </tr>

@@ -10,7 +10,7 @@
 @include('core::admin._image-fieldset', ['field' => 'image'])
 
 <div class="row">
-    <div class="col-sm-2 form-group @if ($errors->has('position'))has-error @endif">
+    <div class="col-sm-2">
         {!! BootForm::text(__('Position'), 'position')->type('number')->min(1)->required() !!}
     </div>
 </div>
@@ -23,6 +23,8 @@
 
 {!! BootForm::select(__('Page'), 'page_id', Pages::allForSelect()) !!}
 
-{!! TranslatableBootForm::hidden('status')->value(0) !!}
-{!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+<div class="form-group">
+    {!! TranslatableBootForm::hidden('status')->value(0) !!}
+    {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
+</div>
 {!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor') !!}
