@@ -25,7 +25,7 @@ class Slide extends Base
         'body',
     ];
 
-    protected $appends = ['thumb', 'body_cleaned_translated', 'status_translated'];
+    protected $appends = ['thumb', 'body_cleaned_translated'];
 
     /**
      * Append thumb attribute.
@@ -35,18 +35,6 @@ class Slide extends Base
     public function getThumbAttribute()
     {
         return $this->present()->thumbSrc(null, 22);
-    }
-
-    /**
-     * Append status_translated attribute.
-     *
-     * @return string
-     */
-    public function getStatusTranslatedAttribute()
-    {
-        $locale = config('app.locale');
-
-        return $this->translate('status', config('typicms.content_locale', $locale));
     }
 
     /**
