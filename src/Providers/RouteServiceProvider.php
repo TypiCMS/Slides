@@ -36,8 +36,17 @@ class RouteServiceProvider extends ServiceProvider
                 $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide')->middleware('can:update-slide');
                 $router->post('slides', 'AdminController@store')->name('admin::store-slide')->middleware('can:create-slide');
                 $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide')->middleware('can:update-slide');
-                $router->patch('slides/{ids}', 'AdminController@ajaxUpdate')->name('admin::update-slide-ajax')->middleware('can:update-slide');
-                $router->delete('slides/{ids}', 'AdminController@destroyMultiple')->name('admin::destroy-slide')->middleware('can:delete-slide');
+            });
+
+            /*
+             * API routes
+             */
+            $router->middleware('api')->prefix('api')->group(function (Router $router) {
+                // $router->middleware('auth:api')->group(function (Router $router) {
+                    $router->get('slides', 'ApiController@index')->name('api::index-slides');
+                    $router->patch('slides/{slide}', 'ApiController@updatePartial')->name('api::update-slide')->middleware('can:update-slide');
+                    $router->delete('slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide')->middleware('can:delete-slide');
+                // });
             });
         });
     }

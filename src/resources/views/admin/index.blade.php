@@ -4,59 +4,42 @@
 
 @section('content')
 
-<div ng-cloak ng-controller="ListController">
+<item-list
+    url-base="{{ route('api::index-slides') }}"
+    locale="{{ config('typicms.content_locale') }}"
+    fields="id,position,body"
+    translatable-fields="status,body"
+    table="slides"
+    title="slides"
+    :searchable="['id']"
+    :sorting="['position']">
 
-    @include('core::admin._button-create', ['module' => 'slides'])
+    <template slot="add-button">
+        @include('core::admin._button-create', ['module' => 'slides'])
+    </template>
 
-    <h1>@lang('Slides')</h1>
-
-    <div class="btn-toolbar">
-        @include('core::admin._button-select')
-        @include('core::admin._button-actions')
+    <template slot="buttons">
         @include('core::admin._lang-switcher-for-list')
-    </div>
+    </template>
 
-    <div class="table-responsive">
+    <template slot="columns" slot-scope="{ sortArray }">
+        <item-list-column-header name="checkbox"></item-list-column-header>
+        <item-list-column-header name="edit"></item-list-column-header>
+        <item-list-column-header name="status_translated" sortable :sort-array="sortArray" :label="$t('Status')"></item-list-column-header>
+        <item-list-column-header name="image" :label="$t('Image')"></item-list-column-header>
+        <item-list-column-header name="position" sortable :sort-array="sortArray" :label="$t('Position')"></item-list-column-header>
+        <item-list-column-header name="body_cleaned_translated" :label="$t('Content')"></item-list-column-header>
+    </template>
 
-        <table st-persist="slidesTable" st-table="displayedModels" st-safe-src="models" st-order st-filter class="table table-main">
-            <thead>
-                <tr>
-                    <th class="delete"></th>
-                    <th class="edit"></th>
-                    <th st-sort="status_translated" class="status st-sort">{{ __('Status') }}</th>
-                    <th st-sort="image" class="image st-sort">{{ __('Image') }}</th>
-                    <th st-sort="position" st-sort-default="true" class="position st-sort">{{ __('Position') }}</th>
-                    <th>{{ __('Body') }}</th>
-                </tr>
-            </thead>
+    <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
+        <td class="checkbox"><item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox></td>
+        <td>@include('core::admin._button-edit', ['module' => 'slides'])</td>
+        <td><item-list-status-button :model="model"></item-list-status-button></td>
+        <td><img :src="model.thumb" alt=""></td>
+        <td>@{{ model.position }}</td>
+        <td>@{{ model.body_cleaned_translated }}</td>
+    </template>
 
-            <tbody>
-                <tr ng-repeat="model in displayedModels">
-                    <td>
-                        <input type="checkbox" checklist-model="checked.models" checklist-value="model">
-                    </td>
-                    <td>
-                        @include('core::admin._button-edit', ['module' => 'slides'])
-                    </td>
-                    <td typi-btn-status action="toggleStatus(model)" model="model"></td>
-                    <td>
-                        <img ng-src="@{{ model.thumb }}" alt="">
-                    </td>
-                    <td>
-                        <input class="form-control form-control-sm" min="0" type="number" name="position" ng-model="model.position" ng-change="update(model, 'position')">
-                    </td>
-                    <td>@{{ model.body_cleaned_translated }}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" typi-pagination></td>
-                </tr>
-            </tfoot>
-        </table>
-
-    </div>
-
-</div>
+</item-list>
 
 @endsection
