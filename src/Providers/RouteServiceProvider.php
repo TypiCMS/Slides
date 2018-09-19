@@ -42,11 +42,11 @@ class RouteServiceProvider extends ServiceProvider
              * API routes
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
-                // $router->middleware('auth:api')->group(function (Router $router) {
+                $router->middleware('auth:api')->group(function (Router $router) {
                     $router->get('slides', 'ApiController@index')->name('api::index-slides');
                     $router->patch('slides/{slide}', 'ApiController@updatePartial')->name('api::update-slide')->middleware('can:update-slide');
                     $router->delete('slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide')->middleware('can:delete-slide');
-                // });
+                });
             });
         });
     }
