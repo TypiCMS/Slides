@@ -3,6 +3,8 @@
 namespace TypiCMS\Modules\Slides\Models;
 
 use Laracasts\Presenter\PresentableTrait;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\Files\Models\File;
@@ -10,11 +12,12 @@ use TypiCMS\Modules\History\Traits\Historable;
 use TypiCMS\Modules\Pages\Models\Page;
 use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
-class Slide extends Base
+class Slide extends Base implements Sortable
 {
     use HasTranslations;
     use Historable;
     use PresentableTrait;
+    use SortableTrait;
 
     protected $presenter = ModulePresenter::class;
 
@@ -23,6 +26,10 @@ class Slide extends Base
     public $translatable = [
         'status',
         'body',
+    ];
+
+    public $sortable = [
+        'order_column_name' => 'position',
     ];
 
     protected $appends = ['thumb', 'body_cleaned_translated'];

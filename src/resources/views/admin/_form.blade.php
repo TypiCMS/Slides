@@ -6,14 +6,9 @@
 @endcomponent
 
 {!! BootForm::hidden('id') !!}
+{!! BootForm::hidden('position')->value($model->position ?: 0) !!}
 
 <filepicker related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></filepicker>
-
-<div class="row">
-    <div class="col-sm-2">
-        {!! BootForm::text(__('Position'), 'position')->type('number')->min(1)->required() !!}
-    </div>
-</div>
 
 <div class="row">
     <div class="col-sm-6">

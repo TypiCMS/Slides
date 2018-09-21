@@ -43,9 +43,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('slides', 'ApiController@index')->name('api::index-slides');
-                    $router->patch('slides/{slide}', 'ApiController@updatePartial')->name('api::update-slide')->middleware('can:update-slide');
-                    $router->delete('slides/{slide}', 'ApiController@destroy')->name('api::destroy-slide')->middleware('can:delete-slide');
+                    $router->get('slides', 'ApiController@index')->middleware('can:see-all-slides');
+                    $router->patch('slides/{slide}', 'ApiController@updatePartial')->middleware('can:update-slide');
+                    $router->delete('slides/{slide}', 'ApiController@destroy')->middleware('can:delete-slide');
                 });
             });
         });
