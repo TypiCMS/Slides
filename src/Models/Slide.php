@@ -32,7 +32,7 @@ class Slide extends Base implements Sortable
         'order_column_name' => 'position',
     ];
 
-    protected $appends = ['thumb', 'body_cleaned_translated'];
+    protected $appends = ['thumb'];
 
     /**
      * Append thumb attribute.
@@ -42,18 +42,6 @@ class Slide extends Base implements Sortable
     public function getThumbAttribute()
     {
         return $this->present()->thumbSrc(null, 22);
-    }
-
-    /**
-     * Append body_cleaned_translated attribute.
-     *
-     * @return string
-     */
-    public function getBodyCleanedTranslatedAttribute()
-    {
-        $locale = config('app.locale');
-        $body = $this->translate('body', config('typicms.content_locale', $locale));
-        return trim(strip_tags(html_entity_decode($body)), '"');
     }
 
     /**

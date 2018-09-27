@@ -24,7 +24,7 @@
         <item-list-column-header name="status_translated" sortable :sort-array="sortArray" :label="$t('Status')"></item-list-column-header>
         <item-list-column-header name="position" sortable :sort-array="sortArray" :label="$t('Position')"></item-list-column-header>
         <item-list-column-header name="image" :label="$t('Image')"></item-list-column-header>
-        <item-list-column-header name="body_cleaned_translated" :label="$t('Content')"></item-list-column-header>
+        <item-list-column-header name="body_translated" :label="$t('Content')"></item-list-column-header>
     </template>
 
     <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
@@ -33,7 +33,7 @@
         <td><item-list-status-button :model="model"></item-list-status-button></td>
         <td><item-list-position-input :model="model"></item-list-position-input></td>
         <td><img :src="model.thumb" alt=""></td>
-        <td>@{{ model.body_cleaned_translated }}</td>
+        <td>@{{ model.body_translated }}</td>
     </template>
 
 </item-list>
