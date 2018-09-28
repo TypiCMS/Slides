@@ -26,6 +26,7 @@ class ApiController extends BaseApiController
             collect($data->items())
                 ->map(function ($item) {
                     $item->body_translated = trim(strip_tags(html_entity_decode($item->body_translated)), '"');
+
                     return $item;
                 }
             )
