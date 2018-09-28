@@ -4,10 +4,10 @@
 
 @section('content')
 
-    @include('core::admin._button-back', ['module' => 'slides'])
-    <h1>
-        @lang('New slide')
-    </h1>
+    <div class="header">
+        @include('core::admin._button-back', ['module' => 'slides'])
+        <h1 class="header-title">@lang('New slide')</h1>
+    </div>
 
     {!! BootForm::open()->action(route('admin::index-slides'))->multipart()->role('form') !!}
         @include('slides::admin._form')
