@@ -18,6 +18,7 @@ class ApiController extends BaseApiController
     public function index(Request $request)
     {
         $data = QueryBuilder::for(Slide::class)
+            ->with('image')
             ->translated($request->input('translatable_fields'))
             ->paginate($request->input('per_page'));
 
