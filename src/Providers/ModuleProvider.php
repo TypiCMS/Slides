@@ -28,10 +28,10 @@ class ModuleProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/slides'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/slides'),
         ], 'typicms-views');
         $this->publishes([
-            __DIR__.'/../resources/assets' => base_path('resources/assets'),
+            __DIR__.'/../resources' => resource_path(),
         ], 'typicms-assets');
 
         AliasLoader::getInstance()->alias('Slides', Slides::class);
