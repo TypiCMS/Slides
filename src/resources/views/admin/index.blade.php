@@ -11,7 +11,8 @@
     translatable-fields="status,body"
     table="slides"
     title="slides"
-    :searchable="['id']"
+    include="image"
+    :searchable="['body']"
     :sorting="['position']">
 
     <template slot="add-button">
