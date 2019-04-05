@@ -1,4 +1,4 @@
-<div class="slides-list swiper-wrapper">
+<div class="slide-list swiper-wrapper">
     @foreach ($items as $slide)
     @include('slides::public._list-item')
     @endforeach
