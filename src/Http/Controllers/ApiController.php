@@ -8,15 +8,9 @@ use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Slides\Models\Slide;
-use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class ApiController extends BaseApiController
 {
-    public function __construct(EloquentSlide $slide)
-    {
-        parent::__construct($slide);
-    }
-
     public function index(Request $request)
     {
         $data = QueryBuilder::for(Slide::class)
@@ -58,7 +52,7 @@ class ApiController extends BaseApiController
         }
         $saved = $slide->save();
 
-        $this->repository->forgetCache();
+        $this->model->forgetCache();
 
         return response()->json([
             'error' => !$saved,
@@ -67,7 +61,7 @@ class ApiController extends BaseApiController
 
     public function destroy(Slide $slide)
     {
-        $deleted = $this->repository->delete($slide);
+        $deleted = $slide->delete();
 
         return response()->json([
             'error' => !$deleted,

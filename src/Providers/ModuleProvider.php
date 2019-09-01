@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Slides\Facades\Slides;
-use TypiCMS\Modules\Slides\Repositories\EloquentSlide;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -58,6 +57,6 @@ class ModuleProvider extends ServiceProvider
          */
         $app->register(RouteServiceProvider::class);
 
-        $app->bind('Slides', EloquentSlide::class);
+        $app->bind('Slides', Slide::class);
     }
 }
