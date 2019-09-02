@@ -2,7 +2,9 @@
 
 namespace TypiCMS\Modules\Slides\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Spatie\QueryBuilder\Filter;
 use Spatie\QueryBuilder\QueryBuilder;
 use TypiCMS\Modules\Core\Filters\FilterOr;
@@ -11,7 +13,7 @@ use TypiCMS\Modules\Slides\Models\Slide;
 
 class ApiController extends BaseApiController
 {
-    public function index(Request $request)
+    public function index(Request $request): LengthAwarePaginator
     {
         $data = QueryBuilder::for(Slide::class)
             ->allowedFilters([
@@ -34,7 +36,7 @@ class ApiController extends BaseApiController
         return $data;
     }
 
-    protected function updatePartial(Slide $slide, Request $request)
+    protected function updatePartial(Slide $slide, Request $request): JsonResponse
     {
         $data = [];
         foreach ($request->all() as $column => $content) {
@@ -52,14 +54,12 @@ class ApiController extends BaseApiController
         }
         $saved = $slide->save();
 
-        $this->model->forgetCache();
-
         return response()->json([
             'error' => !$saved,
         ]);
     }
 
-    public function destroy(Slide $slide)
+    public function destroy(Slide $slide): JsonResponse
     {
         $deleted = $slide->delete();
 
