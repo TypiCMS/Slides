@@ -7,8 +7,7 @@
 <item-list
     url-base="/api/slides"
     locale="{{ config('typicms.content_locale') }}"
-    fields="id,image_id,position"
-    translatable-fields="status,body"
+    fields="id,image_id,position,status,body"
     table="slides"
     title="slides"
     include="image"
