@@ -19,7 +19,7 @@ class ApiController extends BaseApiController
             ->selectFields($request->input('fields.slides'))
             ->allowedSorts(['status_translated', 'position', 'body_translated'])
             ->allowedFilters([
-                AllowedFilter::custom('body', new FilterOr),
+                AllowedFilter::custom('body', new FilterOr()),
             ])
             ->allowedIncludes(['image'])
             ->paginate($request->input('per_page'));
