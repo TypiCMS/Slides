@@ -17,7 +17,7 @@ class ApiController extends BaseApiController
     {
         $data = QueryBuilder::for(Slide::class)
             ->selectFields($request->input('fields.slides'))
-            ->allowedSorts(['status_translated', 'position'])
+            ->allowedSorts(['status_translated', 'position', 'body_translated'])
             ->allowedFilters([
                 AllowedFilter::custom('body', new FilterOr),
             ])
