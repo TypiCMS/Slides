@@ -24,8 +24,6 @@ class Slide extends Base implements Sortable
 
     protected $guarded = ['id', 'exit'];
 
-    protected $appends = ['thumb'];
-
     public $translatable = [
         'status',
         'body',
