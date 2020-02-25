@@ -14,10 +14,12 @@ class ModuleProvider extends ServiceProvider
     public function boot()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/config.php', 'typicms.slides'
+            __DIR__.'/../config/config.php',
+            'typicms.slides'
         );
         $this->mergeConfigFrom(
-            __DIR__.'/../config/permissions.php', 'typicms.permissions'
+            __DIR__.'/../config/permissions.php',
+            'typicms.permissions'
         );
 
         $modules = $this->app['config']['typicms']['modules'];
