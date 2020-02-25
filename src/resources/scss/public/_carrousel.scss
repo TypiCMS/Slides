@@ -1,10 +1,4 @@
 .carrousel {
-    @include media-breakpoint-up(md) {
-        margin: 2rem 0;
-    }
-    @include media-breakpoint-up(xl) {
-        margin: 4rem 0;
-    }
     &-items {
         margin-bottom: 1rem;
     }
