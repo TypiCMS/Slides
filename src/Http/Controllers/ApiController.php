@@ -26,12 +26,13 @@ class ApiController extends BaseApiController
 
         $data->setCollection(
             collect($data->items())
-                ->map(function ($item) {
+                ->map(
+                    function ($item) {
                     $item->body_translated = trim(strip_tags(html_entity_decode($item->body_translated)), '"');
 
                     return $item;
                 }
-            )
+                )
         );
 
         return $data;
