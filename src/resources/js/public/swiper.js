@@ -14,7 +14,7 @@ new Swiper('.carousel', {
         clickable: true,
     },
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.carrousel-button-next',
+        prevEl: '.carrousel-button-prev',
     },
 });
