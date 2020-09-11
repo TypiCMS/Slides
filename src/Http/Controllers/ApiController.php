@@ -2,7 +2,6 @@
 
 namespace TypiCMS\Modules\Slides\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -38,7 +37,7 @@ class ApiController extends BaseApiController
         return $data;
     }
 
-    protected function updatePartial(Slide $slide, Request $request): JsonResponse
+    protected function updatePartial(Slide $slide, Request $request)
     {
         $data = [];
         foreach ($request->all() as $column => $content) {
@@ -52,21 +51,13 @@ class ApiController extends BaseApiController
         }
 
         foreach ($data as $key => $value) {
-            $slide->$key = $value;
+            $slide->{$key} = $value;
         }
-        $saved = $slide->save();
-
-        return response()->json([
-            'error' => !$saved,
-        ]);
+        $slide->save();
     }
 
-    public function destroy(Slide $slide): JsonResponse
+    public function destroy(Slide $slide)
     {
-        $deleted = $slide->delete();
-
-        return response()->json([
-            'error' => !$deleted,
-        ]);
+        $slide->delete();
     }
 }
