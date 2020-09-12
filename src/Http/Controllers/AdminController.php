@@ -29,14 +29,14 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $model = Slide::create($request->all());
+        $slide = Slide::create($request->validated());
 
-        return $this->redirect($request, $model);
+        return $this->redirect($request, $slide);
     }
 
     public function update(Slide $slide, FormRequest $request): RedirectResponse
     {
-        $slide->update($request->all());
+        $slide->update($request->validated());
 
         return $this->redirect($request, $slide);
     }
