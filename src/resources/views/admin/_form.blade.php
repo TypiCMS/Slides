@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        {!! BootForm::text(__('Url'), 'url') !!}
+        {!! BootForm::text(__('Url'), 'url')->type('url')->placeholder('https://') !!}
     </div>
 </div>
 
