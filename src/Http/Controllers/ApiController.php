@@ -39,20 +39,16 @@ class ApiController extends BaseApiController
 
     protected function updatePartial(Slide $slide, Request $request)
     {
-        $data = [];
-        foreach ($request->all() as $column => $content) {
-            if (is_array($content)) {
-                foreach ($content as $key => $value) {
-                    $data[$column.'->'.$key] = $value;
+        foreach ($request->only('status', 'position') as $key => $content) {
+            if ($slide->isTranslatableAttribute($key)) {
+                foreach ($content as $lang => $value) {
+                    $slide->setTranslation($key, $lang, $value);
                 }
             } else {
-                $data[$column] = $content;
+                $slide->{$key} = $content;
             }
         }
 
-        foreach ($data as $key => $value) {
-            $slide->{$key} = $value;
-        }
         $slide->save();
     }
 
