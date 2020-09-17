@@ -27,11 +27,11 @@ class RouteServiceProvider extends ServiceProvider
              * Admin routes
              */
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
-                $router->get('slides', 'AdminController@index')->name('admin::index-slides')->middleware('can:see-all-slides');
-                $router->get('slides/create', 'AdminController@create')->name('admin::create-slide')->middleware('can:create-slide');
-                $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide')->middleware('can:update-slide');
-                $router->post('slides', 'AdminController@store')->name('admin::store-slide')->middleware('can:create-slide');
-                $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide')->middleware('can:update-slide');
+                $router->get('slides', 'AdminController@index')->name('admin::index-slides')->middleware('can:read slides');
+                $router->get('slides/create', 'AdminController@create')->name('admin::create-slide')->middleware('can:create slides');
+                $router->get('slides/{slide}/edit', 'AdminController@edit')->name('admin::edit-slide')->middleware('can:update slides');
+                $router->post('slides', 'AdminController@store')->name('admin::store-slide')->middleware('can:create slides');
+                $router->put('slides/{slide}', 'AdminController@update')->name('admin::update-slide')->middleware('can:update slides');
             });
 
             /*
@@ -39,9 +39,9 @@ class RouteServiceProvider extends ServiceProvider
              */
             $router->middleware('api')->prefix('api')->group(function (Router $router) {
                 $router->middleware('auth:api')->group(function (Router $router) {
-                    $router->get('slides', 'ApiController@index')->middleware('can:see-all-slides');
-                    $router->patch('slides/{slide}', 'ApiController@updatePartial')->middleware('can:update-slide');
-                    $router->delete('slides/{slide}', 'ApiController@destroy')->middleware('can:delete-slide');
+                    $router->get('slides', 'ApiController@index')->middleware('can:read slides');
+                    $router->patch('slides/{slide}', 'ApiController@updatePartial')->middleware('can:update slides');
+                    $router->delete('slides/{slide}', 'ApiController@destroy')->middleware('can:delete slides');
                 });
             });
         });
