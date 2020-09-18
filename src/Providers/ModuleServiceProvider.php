@@ -9,7 +9,7 @@ use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Slides\Facades\Slides;
 use TypiCMS\Modules\Slides\Models\Slide;
 
-class ModuleProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     public function boot()
     {
