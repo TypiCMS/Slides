@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
             $router->middleware('admin')->prefix('admin')->group(function (Router $router) {
                 $router->get('slides', [AdminController::class, 'index'])->name('admin::index-slides')->middleware('can:read slides');
                 $router->get('slides/create', [AdminController::class, 'create'])->name('admin::create-slide')->middleware('can:create slides');
-                $router->get('slides/{slide}/edit', [AdminController::class, 'edit'])->name('admin::edit-slide')->middleware('can:update slides');
+                $router->get('slides/{slide}/edit', [AdminController::class, 'edit'])->name('admin::edit-slide')->middleware('can:read slides');
                 $router->post('slides', [AdminController::class, 'store'])->name('admin::store-slide')->middleware('can:create slides');
                 $router->put('slides/{slide}', [AdminController::class, 'update'])->name('admin::update-slide')->middleware('can:update slides');
             });
