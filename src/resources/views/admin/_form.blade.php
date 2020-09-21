@@ -11,7 +11,7 @@
 <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
 <file-field type="image" field="image_id" data="{{ $model->image }}"></file-field>
 
-<div class="row">
+<div class="form-row">
     <div class="col-sm-6">
         {!! BootForm::text(__('Url'), 'url')->type('url')->placeholder('https://') !!}
     </div>
