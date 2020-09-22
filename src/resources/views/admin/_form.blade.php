@@ -9,7 +9,7 @@
 {!! BootForm::hidden('id') !!}
 
 <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
-<file-field type="image" field="image_id" :init-file="{{ $model->image }}"></file-field>
+<file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
 
 <div class="form-row">
     <div class="col-sm-6">
