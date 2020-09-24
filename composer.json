@@ -16,16 +16,6 @@
             "TypiCMS\\Modules\\Slides\\": "src/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "TypiCMS\\Modules\\Slides\\Providers\\ModuleServiceProvider"
-            ],
-            "aliases": {
-                "Slides": "TypiCMS\\Modules\\Slides\\Facades\\Slides"
-            }
-        }
-    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
