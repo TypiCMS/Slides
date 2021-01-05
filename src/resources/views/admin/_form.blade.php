@@ -11,7 +11,7 @@
 <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
 <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
 
-<div class="form-row">
+<div class="row gx-3">
     <div class="col-sm-6">
         {!! BootForm::text(__('Url'), 'url')->type('url')->placeholder('https://') !!}
     </div>
@@ -19,7 +19,7 @@
 
 {!! BootForm::select(__('Page'), 'page_id', Pages::allForSelect())->addClass('custom-select') !!}
 
-<div class="form-group">
+<div class="mb-3">
     {!! TranslatableBootForm::hidden('status')->value(0) !!}
     {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
 </div>
