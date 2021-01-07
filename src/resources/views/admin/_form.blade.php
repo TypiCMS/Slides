@@ -17,7 +17,7 @@
     </div>
 </div>
 
-{!! BootForm::select(__('Page'), 'page_id', Pages::allForSelect())->addClass('custom-select') !!}
+{!! BootForm::select(__('Page'), 'page_id', Pages::allForSelect()) !!}
 
 <div class="mb-3">
     {!! TranslatableBootForm::hidden('status')->value(0) !!}
