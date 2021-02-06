@@ -6,7 +6,7 @@ use TypiCMS\Modules\Core\Presenters\Presenter;
 
 class ModulePresenter extends Presenter
 {
-    public function url()
+    public function url(): string
     {
         if ($this->entity->url !== null) {
             return $this->entity->url;
@@ -16,12 +16,12 @@ class ModulePresenter extends Presenter
         }
     }
 
-    public function title()
+    public function title(): string
     {
         return __('Edit');
     }
 
-    public function title_attribute()
+    public function title_attribute(): string
     {
         if ($this->entity->url) {
             return $this->entity->url;
