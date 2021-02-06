@@ -14,6 +14,8 @@ class ModulePresenter extends Presenter
         if ($this->entity->page !== null) {
             return url($this->entity->page->uri(config('app.locale')));
         }
+
+        return '';
     }
 
     public function title(): string
