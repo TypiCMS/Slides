@@ -31,5 +31,7 @@ class ModulePresenter extends Presenter
         if ($this->entity->page) {
             return $this->entity->page->title;
         }
+
+        return '';
     }
 }
