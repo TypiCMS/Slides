@@ -19,19 +19,19 @@ class ModuleServiceProvider extends ServiceProvider
         $modules = $this->app['config']['typicms']['modules'];
         $this->app['config']->set('typicms.modules', array_merge(['slides' => []], $modules));
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'slides');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'slides');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/create_slides_table.php.stub' => getMigrationFileName('create_slides_table'),
+            __DIR__.'/../../database/migrations/create_slides_table.php.stub' => getMigrationFileName('create_slides_table'),
         ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/slides'),
+            __DIR__.'/../../resources/views' => resource_path('views/vendor/slides'),
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/../resources/js' => resource_path('js'),
-            __DIR__.'/../resources/scss' => resource_path('scss'),
+            __DIR__.'/../../resources/js' => resource_path('js'),
+            __DIR__.'/../../resources/scss' => resource_path('scss'),
         ], 'resources');
 
         AliasLoader::getInstance()->alias('Slides', Slides::class);
