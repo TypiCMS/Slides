@@ -30,7 +30,6 @@ class ModuleServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/../../resources/js' => resource_path('js'),
             __DIR__.'/../../resources/scss' => resource_path('scss'),
         ], 'resources');
 
