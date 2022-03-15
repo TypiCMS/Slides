@@ -19,8 +19,8 @@ class SidebarViewComposer
             $group->weight = 30;
             $group->addItem(__('Slides'), function (SidebarItem $item) {
                 $item->id = 'slides';
-                $item->icon = config('typicms.slides.sidebar.icon');
-                $item->weight = config('typicms.slides.sidebar.weight');
+                $item->icon = config('typicms.modules.slides.sidebar.icon');
+                $item->weight = config('typicms.modules.slides.sidebar.weight');
                 $item->route('admin::index-slides');
                 $item->append('admin::create-slide');
             });
