@@ -11,7 +11,6 @@
     table="slides"
     title="slides"
     include="image"
-    appends="thumb"
     :searchable="['body']"
     :sorting="['position']">
 

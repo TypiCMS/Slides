@@ -2,14 +2,15 @@
 
 namespace TypiCMS\Modules\Slides\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
-use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Core\Models\File;
+use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Pages\Models\Page;
 use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
@@ -24,6 +25,8 @@ class Slide extends Base implements Sortable
 
     protected $guarded = [];
 
+    protected $appends = ['thumb'];
+
     public $translatable = [
         'status',
         'body',
@@ -33,9 +36,11 @@ class Slide extends Base implements Sortable
         'order_column_name' => 'position',
     ];
 
-    public function getThumbAttribute(): string
+    protected function thumb(): Attribute
     {
-        return $this->present()->image(null, 54);
+        return new Attribute(
+            get: fn () => $this->present()->image(null, 54),
+        );
     }
 
     public function page(): BelongsTo
