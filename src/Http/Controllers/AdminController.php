@@ -31,13 +31,15 @@ class AdminController extends BaseAdminController
     {
         $slide = Slide::create($request->validated());
 
-        return $this->redirect($request, $slide);
+        return $this->redirect($request, $slide)
+            ->withMessage(__('Item successfully created.'));
     }
 
     public function update(Slide $slide, FormRequest $request): RedirectResponse
     {
         $slide->update($request->validated());
 
-        return $this->redirect($request, $slide);
+        return $this->redirect($request, $slide)
+            ->withMessage(__('Item successfully updated.'));
     }
 }
