@@ -11,8 +11,10 @@
         loop: true,
         grabCursor: true,
         speed: 800,
+        parallax: true,
+        effect: 'fade',
         autoplay: {
-            delay: 6000,
+            delay: 5000,
         },
         pagination: {
             type: 'bullets',
