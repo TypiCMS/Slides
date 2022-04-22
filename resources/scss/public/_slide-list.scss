@@ -1,6 +1,7 @@
 .slide-list {
-    &-items {
-        margin-bottom: 1rem;
+    &-container {
+        position: relative;
+        overflow: hidden;
     }
     &-item {
         background-size: cover;
@@ -16,16 +17,14 @@
                 align-items: center;
             }
         }
-        &-text {
-            background-color: rgba($white, 90%);
+        &-content {
+            background-color: rgba($white, 50%);
             padding: 2rem;
-            margin: 1rem;
+            backdrop-filter: grayscale(1) blur(10px);
+            margin-bottom: 0;
             @include media-breakpoint-up(md) {
                 width: 40%;
                 margin-right: 5rem;
-            }
-            p:last-child {
-                margin-bottom: 0;
             }
         }
         &-button {
@@ -35,33 +34,5 @@
         }
     }
     &-button {
-        @extend .btn;
-        border-radius: 50%;
-        flex-shrink: 0;
-        background-color: rgba($white, 0.4);
-        background-size: 50% 50%;
-        background-position: 11px center;
-        width: 30px;
-        height: 30px;
-        @include media-breakpoint-up(md) {
-            width: 50px;
-            height: 50px;
-        }
-        &:hover,
-        &:focus {
-            background-color: $white;
-        }
-        &-prev {
-            background-position: 6px center;
-            @include media-breakpoint-up(md) {
-                background-position: 11px center;
-            }
-        }
-        &-next {
-            background-position: 8px center;
-            @include media-breakpoint-up(md) {
-                background-position: 13px center;
-            }
-        }
     }
 }
