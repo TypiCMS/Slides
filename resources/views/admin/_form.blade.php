@@ -1,8 +1,3 @@
-@push('js')
-    <script src="{{ asset('components/ckeditor4/ckeditor.js') }}"></script>
-    <script src="{{ asset('components/ckeditor4/config-full.js') }}"></script>
-@endpush
-
 <div class="header">
     @include('core::admin._button-back', ['url' => $model->indexUrl(), 'title' => __('Slides')])
     @include('core::admin._title', ['default' => __('New slide')])
@@ -31,6 +26,6 @@
         {!! TranslatableBootForm::hidden('status')->value(0) !!}
         {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
     </div>
-    {!! TranslatableBootForm::textarea(__('Body'), 'body')->addClass('ckeditor-full') !!}
+    {!! TranslatableBootForm::textarea(__('Body'), 'body') !!}
 
 </div>
