@@ -4,6 +4,6 @@
     @endforeach
 </div>
 @if ($items->count() > 1)
-<div class="slide-list-button slide-list-button-prev swiper-button-prev swiper-button-black"></div>
-<div class="slide-list-button slide-list-button-next swiper-button-next swiper-button-black"></div>
+<div class="slide-list-button slide-list-button-prev swiper-button-prev"></div>
+<div class="slide-list-button slide-list-button-next swiper-button-next"></div>
 @endif
