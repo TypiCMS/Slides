@@ -10,8 +10,8 @@ use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Translatable\HasTranslations;
 use TypiCMS\Modules\Core\Models\Base;
 use TypiCMS\Modules\Core\Models\File;
+use TypiCMS\Modules\Core\Models\Page;
 use TypiCMS\Modules\Core\Traits\Historable;
-use TypiCMS\Modules\Pages\Models\Page;
 use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
 class Slide extends Base implements Sortable
