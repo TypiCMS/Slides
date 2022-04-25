@@ -6,7 +6,6 @@
 
 <item-list
     url-base="/api/slides"
-    locale="{{ config('typicms.content_locale') }}"
     fields="id,image_id,position,status,body"
     table="slides"
     title="slides"
@@ -29,7 +28,7 @@
 
     <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
         <td class="checkbox" v-if="$can('update slides')||$can('delete slides')"><item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox></td>
-        <td v-if="$can('update slides')">@include('core::admin._button-edit', ['module' => 'slides'])</td>
+        <td v-if="$can('update slides')"><item-list-edit-button :url="'/admin/slides/'+model.id+'/edit'"></item-list-edit-button></td>
         <td><item-list-status-button :model="model"></item-list-status-button></td>
         <td><item-list-position-input :model="model"></item-list-position-input></td>
         <td><img :src="model.thumb" alt="" height="27"></td>
