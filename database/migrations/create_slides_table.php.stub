@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -17,8 +18,8 @@ class CreateSlidesTable extends Migration
             $table->integer('page_id')->unsigned()->nullable();
             $table->foreignId('image_id')->nullable();
             $table->string('url')->nullable();
-            $table->json('status');
-            $table->json('body');
+            $table->json('status')->default(new Expression('(JSON_OBJECT())'));
+            $table->json('body')->default(new Expression('(JSON_OBJECT())'));
             $table->timestamps();
         });
     }
