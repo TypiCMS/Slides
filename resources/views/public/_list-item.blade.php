@@ -4,8 +4,7 @@
             <p class="slide-list-item-text slider-text">
                 {!! nl2br($slide->body) !!}
             </p>
-            <a class="slide-list-item-button" href="{{ $slide->present()->url }}"
-                title="{{ $slide->present()->title_attribute }}"
+            <a class="slide-list-item-button" href="{{ $slide->present()->url }}" title="{{ $slide->present()->title_attribute }}"
                 {{ !empty($slide->url) ? 'target="_blank" rel="noopener noreferrer"' : '' }}>
                 @lang('Read more')
             </a>
