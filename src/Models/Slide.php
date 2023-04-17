@@ -21,13 +21,13 @@ class Slide extends Base implements Sortable
     use PresentableTrait;
     use SortableTrait;
 
-    protected $presenter = ModulePresenter::class;
+    protected string $presenter = ModulePresenter::class;
 
     protected $guarded = [];
 
     protected $appends = ['thumb'];
 
-    public $translatable = [
+    public array $translatable = [
         'status',
         'body',
     ];
