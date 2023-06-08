@@ -16,6 +16,8 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/slides.php', 'typicms.modules.slides');
 
+        $this->loadRoutesFrom(__DIR__ . '/../routes/slides.php');
+
         $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'slides');
 
         $this->publishes([__DIR__ . '/../../database/migrations/create_slides_table.php.stub' => getMigrationFileName('create_slides_table')], 'typicms-migrations');
@@ -36,8 +38,6 @@ class ModuleServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app->register(RouteServiceProvider::class);
-
         $this->app->bind('Slides', Slide::class);
     }
 }
