@@ -6,7 +6,7 @@
 </div>
 
 @push('js')
-    <script>
+    <script type="module">
         new Swiper('.slide-list-swiper', {
             loop: true,
             grabCursor: true,
