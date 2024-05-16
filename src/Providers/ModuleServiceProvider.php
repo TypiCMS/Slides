@@ -5,7 +5,6 @@ namespace TypiCMS\Modules\Slides\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use TypiCMS\Modules\Core\Facades\TypiCMS;
 use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Slides\Facades\Slides;
 use TypiCMS\Modules\Slides\Models\Slide;
@@ -32,7 +31,7 @@ class ModuleServiceProvider extends ServiceProvider
          * Add the page in the view.
          */
         View::composer('slides::public.*', function ($view) {
-            $view->page = TypiCMS::getPageLinkedToModule('slides');
+            $view->page = getPageLinkedToModule('slides');
         });
     }
 
