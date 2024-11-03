@@ -16,7 +16,7 @@ return new class() extends Migration {
             $table->integer('position')->unsigned()->default(1);
             $table->foreignId('page_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('image_id')->nullable()->constrained('files')->nullOnDelete();
-            $table->string('url')->nullable();
+            $table->string('website')->nullable();
             $table->json('status')->default(new Expression('(JSON_OBJECT())'));
             $table->json('body')->default(new Expression('(JSON_OBJECT())'));
             $table->timestamps();

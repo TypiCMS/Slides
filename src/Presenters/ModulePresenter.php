@@ -6,13 +6,13 @@ use TypiCMS\Modules\Core\Presenters\Presenter;
 
 class ModulePresenter extends Presenter
 {
-    public function url(): string
+    public function link(): string
     {
-        if ($this->entity->url !== null) {
-            return $this->entity->url;
+        if ($this->entity->website !== null) {
+            return $this->entity->website;
         }
         if ($this->entity->page !== null) {
-            return url($this->entity->page->uri(config('app.locale')));
+            return $this->entity->page->url();
         }
 
         return '';
@@ -25,8 +25,8 @@ class ModulePresenter extends Presenter
 
     public function title_attribute(): string
     {
-        if ($this->entity->url) {
-            return $this->entity->url;
+        if ($this->entity->website) {
+            return $this->entity->website;
         }
         if ($this->entity->page) {
             return $this->entity->page->title;

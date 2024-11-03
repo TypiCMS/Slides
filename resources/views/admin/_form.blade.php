@@ -13,7 +13,7 @@
 
     <div class="row gx-3">
         <div class="col-sm-6">
-            {!! BootForm::text(__('Url'), 'url')->type('url')->placeholder('https://') !!}
+            {!! BootForm::text(__('Website'), 'website')->type('url')->placeholder('https://') !!}
         </div>
     </div>
 

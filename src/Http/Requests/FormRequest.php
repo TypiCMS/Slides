@@ -9,7 +9,7 @@ class FormRequest extends AbstractFormRequest
     public function rules()
     {
         return [
-            'url' => 'nullable|url|max:255',
+            'website' => 'nullable|url|max:255',
             'image_id' => 'nullable|integer',
             'page_id' => 'nullable|integer',
             'title.*' => 'nullable|max:255',
