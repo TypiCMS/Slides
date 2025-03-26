@@ -4,11 +4,11 @@
 
 @section('content')
     <item-list url-base="/api/slides" fields="id,image_id,position,status,body" table="slides" title="slides" include="image" :searchable="['body']" :sorting="['position']">
-        <template slot="add-button" v-if="$can('create slides')">
+        <template #add-button v-if="$can('create slides')">
             @include('core::admin._button-create', ['module' => 'slides'])
         </template>
 
-        <template slot="columns" slot-scope="{ sortArray }">
+        <template #columns="{ sortArray }">
             <item-list-column-header name="checkbox" v-if="$can('update slides')||$can('delete slides')"></item-list-column-header>
             <item-list-column-header name="edit" v-if="$can('update slides')"></item-list-column-header>
             <item-list-column-header name="status_translated" sortable :sort-array="sortArray" :label="$t('Status')"></item-list-column-header>
@@ -17,7 +17,7 @@
             <item-list-column-header name="body_translated" sortable :sort-array="sortArray" :label="$t('Content')"></item-list-column-header>
         </template>
 
-        <template slot="table-row" slot-scope="{ model, checkedModels, loading }">
+        <template #table-row="{ model, checkedModels, loading }">
             <td class="checkbox" v-if="$can('update slides')||$can('delete slides')">
                 <item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox>
             </td>
