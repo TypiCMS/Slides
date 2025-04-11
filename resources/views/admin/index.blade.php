@@ -17,7 +17,7 @@
             <item-list-column-header name="body_translated" sortable :sort-array="sortArray" :label="$t('Content')"></item-list-column-header>
         </template>
 
-        <template #table-row="{ model, checkedModels, loading }">
+        <template #table-row="{ model, checkedModels, loading, toggleStatus }">
             <td class="checkbox" v-if="$can('update slides')||$can('delete slides')">
                 <item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox>
             </td>
