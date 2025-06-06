@@ -18,20 +18,20 @@ use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
 /**
- * @property-read int $id
- * @property ?int $page_id
- * @property-read string $thumb
- * @property-read Carbon $created_at
- * @property-read Carbon $updated_at
+ * @property int $id
  * @property int $position
+ * @property int|null $page_id
  * @property int|null $image_id
  * @property string|null $website
  * @property array<array-key, mixed> $status
  * @property array<array-key, mixed> $body
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read Collection<int, History> $history
  * @property-read int|null $history_count
  * @property-read File|null $image
  * @property-read Page|null $page
+ * @property-read mixed $thumb
  * @property-read mixed $translations
  */
 class Slide extends Base implements Sortable
