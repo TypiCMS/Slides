@@ -21,7 +21,7 @@ class ApiController extends BaseApiController
                 AllowedFilter::custom('body', new FilterOr()),
             ])
             ->allowedIncludes(['image'])
-            ->paginate($request->input('per_page'));
+            ->paginate($request->integer('per_page'));
 
         $data->setCollection(
             collect($data->items())
