@@ -4,6 +4,7 @@ namespace TypiCMS\Modules\Slides\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 use Laracasts\Presenter\PresentableTrait;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
@@ -14,6 +15,13 @@ use TypiCMS\Modules\Core\Models\Page;
 use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 
+/**
+ * @property-read int $id
+ * @property ?int $page_id
+ * @property-read string $thumb
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
+ */
 class Slide extends Base implements Sortable
 {
     use HasTranslations;
