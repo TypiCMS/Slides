@@ -52,10 +52,13 @@ class Slide extends Base implements Sortable
         'body',
     ];
 
-    public $sortable = [
+    public array $sortable = [
         'order_column_name' => 'position',
     ];
 
+    /**
+     * @return Attribute<string, null>
+     */
     protected function thumb(): Attribute
     {
         return Attribute::make(
