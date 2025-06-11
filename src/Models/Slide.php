@@ -47,18 +47,18 @@ class Slide extends Base implements Sortable
 
     protected $appends = ['thumb'];
 
+    /** @var array<string> */
     public array $translatable = [
         'status',
         'body',
     ];
 
+    /** @var array<string> */
     public array $sortable = [
         'order_column_name' => 'position',
     ];
 
-    /**
-     * @return Attribute<string, null>
-     */
+    /** @return Attribute<string, null> */
     protected function thumb(): Attribute
     {
         return Attribute::make(
