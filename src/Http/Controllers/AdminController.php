@@ -29,7 +29,7 @@ class AdminController extends BaseAdminController
 
     public function store(FormRequest $request): RedirectResponse
     {
-        $slide = Slide::create($request->validated());
+        $slide = Slide::query()->create($request->validated());
 
         return $this->redirect($request, $slide)
             ->withMessage(__('Item successfully created.'));
