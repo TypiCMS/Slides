@@ -1,12 +1,11 @@
 <div class="header">
-    @include('core::admin._button-back', ['url' => $model->indexUrl(), 'title' => __('Slides')])
-    @include('core::admin._title', ['default' => __('New slide')])
-    @component('core::admin._buttons-form', ['model' => $model])
-    @endcomponent
+    <x-core::back-button :url="$model->indexUrl()" :title="__('Slides')" />
+    <x-core::title :$model :default="__('New slide')" />
+    <x-core::form-buttons :$model :locales="locales()" />
 </div>
 
 <div class="content">
-    @include('core::admin._form-errors')
+    <x-core::form-errors />
 
     <file-manager related-table="{{ $model->getTable() }}" :related-id="{{ $model->id ?? 0 }}"></file-manager>
     <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>

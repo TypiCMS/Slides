@@ -4,8 +4,8 @@
 
 @section('content')
     <item-list url-base="/api/slides" fields="id,image_id,position,status,body" table="slides" title="slides" include="image" :searchable="['body']" :sorting="['position']">
-        <template #add-button v-if="$can('create slides')">
-            @include('core::admin._button-create', ['module' => 'slides'])
+        <template #top-buttons v-if="$can('create slides')">
+            <x-core::create-button :url="route('admin::create-slide')" :label="__('Create slide')" />
         </template>
 
         <template #columns="{ sortArray }">
