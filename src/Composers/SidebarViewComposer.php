@@ -22,7 +22,6 @@ class SidebarViewComposer
                 $item->icon = config('typicms.modules.slides.sidebar.icon');
                 $item->weight = config('typicms.modules.slides.sidebar.weight');
                 $item->route('admin::index-slides');
-                $item->append('admin::create-slide');
             });
         });
     }
