@@ -14,10 +14,10 @@ class SidebarViewComposer
         if (Gate::denies('read slides')) {
             return;
         }
-        $view->offsetGet('sidebar')->group(__('Content'), function (SidebarGroup $group) {
+        $view->offsetGet('sidebar')->group(__('Content'), function (SidebarGroup $group): void {
             $group->id = 'content';
             $group->weight = 30;
-            $group->addItem(__('Slides'), function (SidebarItem $item) {
+            $group->addItem(__('Slides'), function (SidebarItem $item): void {
                 $item->id = 'slides';
                 $item->icon = config('typicms.modules.slides.sidebar.icon');
                 $item->weight = config('typicms.modules.slides.sidebar.weight');

@@ -19,7 +19,7 @@ class AdminController extends BaseAdminController
     {
         $model = new Slide();
 
-        return view('slides::admin.create')->with(compact('model'));
+        return view('slides::admin.create')->with(['model' => $model]);
     }
 
     public function edit(Slide $slide): View
