@@ -11,7 +11,7 @@ return new class() extends Migration {
      */
     public function up(): void
     {
-        Schema::create('slides', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table): void {
             $table->id();
             $table->integer('position')->unsigned()->default(1);
             $table->foreignId('page_id')->nullable()->constrained()->nullOnDelete();
