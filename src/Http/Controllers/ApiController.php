@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Slides\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -11,7 +13,7 @@ use TypiCMS\Modules\Core\Filters\FilterOr;
 use TypiCMS\Modules\Core\Http\Controllers\BaseApiController;
 use TypiCMS\Modules\Slides\Models\Slide;
 
-class ApiController extends BaseApiController
+final class ApiController extends BaseApiController
 {
     /** @return LengthAwarePaginator<int, mixed> */
     public function index(Request $request): LengthAwarePaginator
@@ -25,18 +27,13 @@ class ApiController extends BaseApiController
             ->allowedIncludes(['image'])
             ->paginate($request->integer('per_page'));
 
-        $data->setCollection(
-            collect($data->items())
-                ->map(
-                    function ($item) {
-                        if (property_exists($item, 'body_translated')) {
-                            $item->body_translated = mb_trim(strip_tags(html_entity_decode((string) $item->body_translated)), '"');
-                        }
+        $data->setCollection(collect($data->items())->map(function ($item) {
+            if (property_exists($item, 'body_translated')) {
+                $item->body_translated = mb_trim(strip_tags(html_entity_decode((string) $item->body_translated)), '"');
+            }
 
-                        return $item;
-                    }
-                )
-        );
+            return $item;
+        }));
 
         return $data;
     }

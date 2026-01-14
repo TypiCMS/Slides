@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Modules\Slides\Presenters;
 
 use TypiCMS\Modules\Core\Presenters\Presenter;
@@ -11,6 +13,7 @@ class ModulePresenter extends Presenter
         if ($this->entity->website !== null) {
             return $this->entity->website;
         }
+
         if ($this->entity->page !== null) {
             return $this->entity->page->url();
         }
@@ -28,6 +31,7 @@ class ModulePresenter extends Presenter
         if ($this->entity->website) {
             return $this->entity->website;
         }
+
         if ($this->entity->page) {
             return $this->entity->page->title;
         }
