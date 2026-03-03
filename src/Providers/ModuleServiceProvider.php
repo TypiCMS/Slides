@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Slides\Providers;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
-use TypiCMS\Modules\Slides\Facades\Slides;
-use TypiCMS\Modules\Slides\Models\Slide;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -29,8 +26,6 @@ class ModuleServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/../../resources/views' => resource_path('views/vendor/slides')], 'typicms-views');
         $this->publishes([__DIR__ . '/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
-        AliasLoader::getInstance()->alias('Slides', Slides::class);
-
         View::composer('core::admin._sidebar', SidebarViewComposer::class);
 
         /*
@@ -39,10 +34,5 @@ class ModuleServiceProvider extends ServiceProvider
         View::composer('slides::public.*', function ($view): void {
             $view->page = getPageLinkedToModule('slides');
         });
-    }
-
-    public function register(): void
-    {
-        $this->app->bind('Slides', Slide::class);
     }
 }

@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            {!! BootForm::select(__('Page'), 'page_id', Pages::allForSelect()) !!}
+            {!! BootForm::select(__('Page'), 'page_id', (new TypiCMS\Modules\Core\Models\Page())->allForSelect()) !!}
 
             <div class="mb-3">
                 {!! TranslatableBootForm::hidden('status')->value(0) !!}
