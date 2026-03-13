@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
-use Laracasts\Presenter\PresentableTrait;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use TypiCMS\Modules\Core\Models\File;
@@ -18,11 +17,11 @@ use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Models\Page;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
+use TypiCMS\Modules\Core\Traits\HasPresenterMethods;
 use TypiCMS\Modules\Core\Traits\HasSelectableFields;
 use TypiCMS\Modules\Core\Traits\HasSlugScope;
 use TypiCMS\Modules\Core\Traits\Historable;
 use TypiCMS\Modules\Core\Traits\Publishable;
-use TypiCMS\Modules\Slides\Presenters\ModulePresenter;
 use TypiCMS\Translatable\HasTranslations;
 
 /**
@@ -47,15 +46,13 @@ class Slide extends Model implements Sortable
     use Cachable;
     use HasAdminUrls;
     use HasConfigurableOrder;
+    use HasPresenterMethods;
     use HasSelectableFields;
     use HasSlugScope;
     use HasTranslations;
     use Historable;
-    use PresentableTrait;
     use Publishable;
     use SortableTrait;
-
-    protected string $presenter = ModulePresenter::class;
 
     protected $guarded = [];
 
@@ -75,7 +72,38 @@ class Slide extends Model implements Sortable
     /** @return Attribute<string, null> */
     protected function thumb(): Attribute
     {
-        return Attribute::make(get: fn () => $this->present()->image(null, 54));
+        return Attribute::make(get: fn () => $this->imageUrl(null, 54));
+    }
+
+    public function slideLink(): string
+    {
+        if ($this->website !== null) {
+            return $this->website;
+        }
+
+        if ($this->page !== null) {
+            return $this->page->url();
+        }
+
+        return '';
+    }
+
+    public function presentTitle(): string
+    {
+        return __('Edit');
+    }
+
+    public function titleAttribute(): string
+    {
+        if ($this->website) {
+            return $this->website;
+        }
+
+        if ($this->page) {
+            return $this->page->title;
+        }
+
+        return '';
     }
 
     /** @return BelongsTo<Page, $this> */
